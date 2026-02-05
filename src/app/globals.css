@@ -2,14 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+  :root {
+    --parchment: #e6d5b0;
+    --parchment-dark: #d4c5a3;
+    --ink: #4a3b2a;
+    --gold: #d4af37;
+    --gold-light: #f3e5c7;
+    --gold-dark: #8b6c45;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Text Stroke for 3D effect */
+  .text-stroke-1 {
+    -webkit-text-stroke: 1px #4a3b2a;
+    text-stroke: 1px #4a3b2a;
+  }
+  
+  .text-shadow-vintage {
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  }
+
+  .mask-image-linear-to-r {
+    mask-image: linear-gradient(to right, black, transparent);
+    -webkit-mask-image: linear-gradient(to right, black, transparent);
+  }
+  
+  /* Stone/Metal Gradient Text */
+  .text-gradient-gold {
+    background: linear-gradient(180deg, #5a3a18 0%, #8b6c45 40%, #f3e5c7 50%, #8b6c45 60%, #5a3a18 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+body {
+    background-color: var(--parchment);
+    color: var(--ink);
+    /* Simple parchment noise texture */
+    background-image: 
+        radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
 }
