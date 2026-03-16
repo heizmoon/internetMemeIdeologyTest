@@ -1,0 +1,364 @@
+{
+  "title": "2025年度键政话题",
+  "description": "通过一系列网络热门话题的灵魂拷问，测定你在键政圈的身位。",
+  "dimensions": [
+    {
+      "id": "economic",
+      "name": "经济立场",
+      "leftLabel": "集体主义",
+      "rightLabel": "自由市场",
+      "color": "#ef4444"
+    },
+    {
+      "id": "governance",
+      "name": "治理偏好",
+      "leftLabel": "威权主义",
+      "rightLabel": "自由主义",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "social",
+      "name": "社会观念",
+      "leftLabel": "传统保守",
+      "rightLabel": "开放进步",
+      "color": "#22c55e"
+    },
+    {
+      "id": "national",
+      "name": "民族认同",
+      "leftLabel": "民族主义",
+      "rightLabel": "国际主义",
+      "color": "#f59e0b"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_dongxiaojiie",
+      "text": "「董小姐事件」：医生董袭莹被曝学历造假、利用「4+4」项目违规进入协和。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "个别腐败不代表体制有问题，应该相信组织会处理，不要借题发挥。",
+          "effect": {
+            "governance": -12,
+            "national": -6
+          }
+        },
+        {
+          "id": "b",
+          "text": "说明监管还需完善，但体制本身没问题，加强制度建设就好。",
+          "effect": {
+            "governance": -4,
+            "social": -3
+          }
+        },
+        {
+          "id": "c",
+          "text": "这折射出深层的特权阶层固化问题，需要从制度上反思权力监督。",
+          "effect": {
+            "governance": 8,
+            "social": 6,
+            "economic": -4
+          }
+        },
+        {
+          "id": "d",
+          "text": "特权阶层量身定做的后门罢了。没有真正的权力制约，这种事只会越来越多。",
+          "effect": {
+            "governance": 14,
+            "national": 8,
+            "social": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_apple_android",
+      "text": "户晨风提出「苹果人vs安卓人」理论，用手机品牌划分社会阶层和认知水平。你的看法？",
+      "options": [
+        {
+          "id": "a",
+          "text": "这是挑拨阶级矛盾、制造对立，应该被封禁。社会和谐比什么都重要。",
+          "effect": {
+            "governance": -10,
+            "social": -8,
+            "economic": -6
+          }
+        },
+        {
+          "id": "b",
+          "text": "虽然粗糙，但确实反映了贫富差距的现实。不过用消费品划分太简单了。",
+          "effect": {
+            "social": 3,
+            "economic": -2
+          }
+        },
+        {
+          "id": "c",
+          "text": "贫富差距是真实存在的，但每个人应该靠自己的努力改变命运，而不是怨天尤人。",
+          "effect": {
+            "economic": 10,
+            "social": -2,
+            "governance": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "一针见血！消费行为本身就是阶级再生产的工具，需要对资本进行更强的再分配。",
+          "effect": {
+            "economic": -14,
+            "social": 6,
+            "governance": -3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_k_visa",
+      "text": "中国推出K字签证吸引外籍人才，门槛被认为较低。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "坚决反对！中国人的饭碗不能被外人抢，必须保护国内就业市场。",
+          "effect": {
+            "national": -16,
+            "economic": -4,
+            "social": -5
+          }
+        },
+        {
+          "id": "b",
+          "text": "引进人才可以，但门槛必须严格把控，不能来者不拒。",
+          "effect": {
+            "national": -6,
+            "governance": -3
+          }
+        },
+        {
+          "id": "c",
+          "text": "人才流动本来就是全球化的一部分，合理引进有益于经济发展。",
+          "effect": {
+            "national": 8,
+            "economic": 6,
+            "governance": 3
+          }
+        },
+        {
+          "id": "d",
+          "text": "应该更开放！国际人才自由流动是大势所趋，闭关锁国没有出路。",
+          "effect": {
+            "national": 14,
+            "economic": 8,
+            "governance": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_sex_theory",
+      "text": "戴梦提出「力工梭哈」理论，认为男性在婚姻中付出过多是高风险行为。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "这种理论在激化性别对立、破坏家庭观念，对社会稳定有害，应该被管控。",
+          "effect": {
+            "social": -14,
+            "governance": -8
+          }
+        },
+        {
+          "id": "b",
+          "text": "传统家庭分工有其合理性，男女各司其职才是正道。",
+          "effect": {
+            "social": -8,
+            "economic": -3
+          }
+        },
+        {
+          "id": "c",
+          "text": "婚姻是个人选择，政府不应该干涉，但确实要关注底层男性的经济困境。",
+          "effect": {
+            "governance": 8,
+            "social": 4,
+            "economic": 3
+          }
+        },
+        {
+          "id": "d",
+          "text": "这揭示了底层男性被经济结构压迫的现实，根源在于资本和阶级问题，不是性别问题。",
+          "effect": {
+            "economic": -10,
+            "social": 6,
+            "governance": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_1644",
+      "text": "吃瓜盟主提出「1644史观」——中国近代衰落始于满清入关而非1840。你的态度？",
+      "options": [
+        {
+          "id": "a",
+          "text": "有道理！汉文明本身是先进的，是异族统治导致了落后。要恢复华夏正统。",
+          "effect": {
+            "national": -14,
+            "social": -10,
+            "governance": -5
+          }
+        },
+        {
+          "id": "b",
+          "text": "封建王朝本质都一样，不应该搞民族叙事。用马克思主义的阶级史观才是正确的。",
+          "effect": {
+            "economic": -10,
+            "national": -4,
+            "social": 3
+          }
+        },
+        {
+          "id": "c",
+          "text": "历史很复杂，简单归因于某个朝代或民族都是片面的。理性讨论比站队重要。",
+          "effect": {
+            "social": 4,
+            "national": 4,
+            "governance": 3
+          }
+        },
+        {
+          "id": "d",
+          "text": "历史应该多元解读，但更重要的是面向未来，融入全球文明体系。",
+          "effect": {
+            "national": 12,
+            "social": 8,
+            "governance": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_cctv_waimai",
+      "text": "央视拍外卖员短片，将其描绘为可以「看风景、搞摄影」的美好职业。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "央视在传递正能量，外卖员也有快乐的一面。不要总是传播负面情绪。",
+          "effect": {
+            "governance": -12,
+            "economic": -6,
+            "social": -5
+          }
+        },
+        {
+          "id": "b",
+          "text": "初衷可能是好的，但脱离了实际。媒体应该更接地气地反映劳动者的真实处境。",
+          "effect": {
+            "governance": -2,
+            "social": 3
+          }
+        },
+        {
+          "id": "c",
+          "text": "平台算法对劳动者的压榨才是核心问题，需要政府立法保障零工劳动者权益。",
+          "effect": {
+            "economic": -8,
+            "governance": -4,
+            "social": 6
+          }
+        },
+        {
+          "id": "d",
+          "text": "典型的「何不食肉糜」。官媒粉饰太平，说明言论管控下真相根本无法传播。",
+          "effect": {
+            "governance": 14,
+            "national": 8,
+            "social": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_magic_fight",
+      "text": "面对批评，有人用「杜甫写《茅屋为秋风所破歌》是境外势力」来反讽。你觉得这种「魔法对轰」现象说明了什么？",
+      "options": [
+        {
+          "id": "a",
+          "text": "这是网络乱象，应该加强管理，维护健康的舆论环境。",
+          "effect": {
+            "governance": -14,
+            "social": -6,
+            "national": -4
+          }
+        },
+        {
+          "id": "b",
+          "text": "虽然好笑，但也是一种无奈。说明大家已经放弃了严肃讨论的可能性。",
+          "effect": {
+            "governance": 4,
+            "social": 4
+          }
+        },
+        {
+          "id": "c",
+          "text": "这恰好说明了审查制度的荒谬——当正常表达被限制，人们只能用反讽来发声。",
+          "effect": {
+            "governance": 12,
+            "social": 8,
+            "national": 6
+          }
+        },
+        {
+          "id": "d",
+          "text": "乐子就完了，认真你就输了。管他什么立场，互联网本来就是图一乐。",
+          "effect": {
+            "governance": 6,
+            "social": 3,
+            "national": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_maipian",
+      "text": "博主「麦片」论证执政党仍代表人民利益，将经济困难归因于外部产业链压迫。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "说得对！外部势力的打压是主要矛盾，我们应该团结一致对外。",
+          "effect": {
+            "national": -14,
+            "governance": -10,
+            "economic": -6
+          }
+        },
+        {
+          "id": "b",
+          "text": "外部压力确实存在，但内部也有很多需要改革的地方，不能只怪外面。",
+          "effect": {
+            "national": -3,
+            "governance": -2,
+            "economic": -2
+          }
+        },
+        {
+          "id": "c",
+          "text": "这是转移矛盾。经济问题的根源在于内部的分配不公和制度性障碍。",
+          "effect": {
+            "economic": -6,
+            "governance": 8,
+            "social": 5
+          }
+        },
+        {
+          "id": "d",
+          "text": "典型的洗地。任何不受真正监督的权力都会腐败，跟外部势力没关系。",
+          "effect": {
+            "governance": 14,
+            "national": 10,
+            "economic": 6
+          }
+        }
+      ]
+    }
+  ]
+}

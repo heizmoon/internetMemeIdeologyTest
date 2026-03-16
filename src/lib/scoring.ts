@@ -1,90 +1,155 @@
-import { Axis, Question } from './types';
+import { DIMENSIONS, QUESTIONS } from '@/lib/config';
+import { Question, ResultSummary, ScoreMap } from '@/lib/types';
 
-// Initial score is 50 (Center)
 const INITIAL_SCORE = 50;
 const MAX_SCORE = 100;
 const MIN_SCORE = 0;
 
-export function calculateScore(answers: Record<string, string>, questions: Question[]) {
-    const scores: Record<Axis, number> = {
-        economic: INITIAL_SCORE,
-        cultural: INITIAL_SCORE,
-        national: INITIAL_SCORE,
-        environmental: INITIAL_SCORE
-    };
-
-    questions.forEach((q) => {
-        const selectedOptionId = answers[q.id];
-        if (!selectedOptionId) return;
-
-        const selectedOption = q.options.find(opt => opt.id === selectedOptionId);
-        if (!selectedOption) return;
-
-        Object.entries(selectedOption.effect).forEach(([axis, change]) => {
-            if (typeof change === 'number') {
-                scores[axis as Axis] += change;
-            }
-        });
-    });
-
-    // Clamp scores
-    (Object.keys(scores) as Axis[]).forEach(axis => {
-        scores[axis] = Math.max(MIN_SCORE, Math.min(MAX_SCORE, scores[axis]));
-    });
-
-    return scores;
+function clamp(value: number): number {
+  return Math.max(MIN_SCORE, Math.min(MAX_SCORE, value));
 }
 
-export function getIdeologyLabel(scores: Record<Axis, number>): string {
-    const eco = scores.economic; // 0 (Left/Public) - 100 (Right/Market)
-    const cul = scores.cultural; // 0 (Trad/Auth) - 100 (Prog/Lib)
-    const nat = scores.national; // 0 (National/Pro-China) - 100 (Global/Pro-West)
-    const env = scores.environmental; // 0 (Stability/Order) - 100 (Chaos/Accel)
+export function createInitialScores(): ScoreMap {
+  return DIMENSIONS.reduce<ScoreMap>((acc, dimension) => {
+    acc[dimension.id] = INITIAL_SCORE;
+    return acc;
+  }, {});
+}
 
-    // --- 特殊状态判别 (High Priority) ---
+export function calculateScore(
+  answers: Record<string, string>,
+  questions: Question[] = QUESTIONS
+): ScoreMap {
+  const scores = createInitialScores();
 
-    // 1. 乐子人/加速党 (High Chaos)
-    if (env > 75) return "乐子人 / 加速主义者 (Doomer/Accel)";
+  questions.forEach((question) => {
+    const selectedOptionId = answers[question.id];
+    if (!selectedOptionId) return;
 
-    // 2. 传统建制派 (High National + Stability)
-    if (nat < 30 && env < 40) {
-        if (eco < 40) return "红色卫士 / 工业党 (Auth-Left)";
-        if (cul < 30) return "建制皇汉 / 传统保皇派 (Trad-Nat)";
-        return "爱国青年 / 兔友 (Rabbit)";
+    const selectedOption = question.options.find((option) => option.id === selectedOptionId);
+    if (!selectedOption) return;
+
+    Object.entries(selectedOption.effect).forEach(([dimensionId, change]) => {
+      if (typeof change !== 'number' || Number.isNaN(change)) return;
+      scores[dimensionId] = clamp((scores[dimensionId] ?? INITIAL_SCORE) + change);
+    });
+  });
+
+  return scores;
+}
+
+// ── 8 predefined archetypes ──────────────────────────────────────────────────
+
+interface Archetype {
+  label: string;
+  emoji: string;
+  description: string;
+  /** Ideal score coordinates [economic, governance, social, national] */
+  center: Record<string, number>;
+}
+
+const ARCHETYPES: Archetype[] = [
+  {
+    label: '兔友战士',
+    emoji: '🐰',
+    description:
+      '你是键政圈坚定的建制派。你相信国家力量，认为外部势力是主要矛盾，社会应以稳定为先。你的对手叫你"粉红"，但你觉得爱国有什么错？',
+    center: { economic: 30, governance: 20, social: 25, national: 15 },
+  },
+  {
+    label: '网左先锋',
+    emoji: '⚒️',
+    description:
+      '你是马克思主义左翼的网络传承者。阶级斗争是你的核心信仰，你关注工人权益和分配不公。你可能怀念某个时代，但你拒绝被简单标签化。',
+    center: { economic: 15, governance: 25, social: 45, national: 35 },
+  },
+  {
+    label: '自由派知识分子',
+    emoji: '🌐',
+    description:
+      '你追求普世价值，推崇言论自由和权力制衡。你倾向于用全球视野审视问题，认为开放与透明是解决问题的钥匙。你在键政圈常被叫做"神神"。',
+    center: { economic: 65, governance: 80, social: 80, national: 75 },
+  },
+  {
+    label: '建制皇汉',
+    emoji: '🏯',
+    description:
+      '你支持现有体制，同时拥有强烈的汉民族文化自豪感。"1644史观"让你振奋，你认为华夏文明本身是先进的，只需要找回正统。',
+    center: { economic: 40, governance: 20, social: 15, national: 10 },
+  },
+  {
+    label: '理性中间派',
+    emoji: '💼',
+    description:
+      '你不走极端，在每个议题上都试图寻找平衡。你可能被所有立场的人嘲笑为"骑墙派"，但你觉得务实思考比站队更重要。',
+    center: { economic: 50, governance: 50, social: 50, national: 50 },
+  },
+  {
+    label: '解构乐子人',
+    emoji: '🎭',
+    description:
+      '认真你就输了！你善于用阴阳怪气和"魔法对轰"消解一切严肃立场。在审查和经济压力的夹缝中，你选择了用荒诞对抗荒诞。',
+    center: { economic: 55, governance: 65, social: 60, national: 45 },
+  },
+  {
+    label: '加速主义者',
+    emoji: '🔥',
+    description:
+      '你认为现有体制的矛盾无法通过改良解决。不如让矛盾加速爆发，推动根本变革。你是键政圈里最激进的一派，每天都盼着"大的要来了"。',
+    center: { economic: 70, governance: 75, social: 70, national: 55 },
+  },
+  {
+    label: '阶层焦虑者',
+    emoji: '📱',
+    description:
+      '苹果人还是安卓人？这是你最关心的问题。你敏锐地感知到阶层固化和贫富差距，经济地位和社会流动性是你评判一切政策的核心标尺。',
+    center: { economic: 35, governance: 45, social: 55, national: 40 },
+  },
+];
+
+function euclideanDistance(scores: ScoreMap, center: Record<string, number>): number {
+  let sum = 0;
+  for (const key of Object.keys(center)) {
+    const diff = (scores[key] ?? INITIAL_SCORE) - center[key];
+    sum += diff * diff;
+  }
+  return Math.sqrt(sum);
+}
+
+export function getResultSummary(scores: ScoreMap): ResultSummary {
+  let bestArchetype = ARCHETYPES[4]; // default: centrist
+  let bestDistance = Infinity;
+
+  for (const archetype of ARCHETYPES) {
+    const dist = euclideanDistance(scores, archetype.center);
+    if (dist < bestDistance) {
+      bestDistance = dist;
+      bestArchetype = archetype;
     }
+  }
 
-    // 3. 皇汉与伪史论 (High National, but maybe Chaos/Critical of Gov Cultural policy)
-    if (nat < 20 && cul < 40) return "极端皇汉 / 1644史观持有者";
+  // Build dominant leans for radar chart compatibility
+  const dominantLeans = DIMENSIONS.map((dimension) => {
+    const score = clamp(scores[dimension.id] ?? INITIAL_SCORE);
+    const directionLabel = score >= INITIAL_SCORE ? dimension.rightLabel : dimension.leftLabel;
+    return {
+      dimensionId: dimension.id,
+      dimensionName: dimension.name,
+      score,
+      directionLabel,
+    };
+  })
+    .sort((a, b) => Math.abs(b.score - INITIAL_SCORE) - Math.abs(a.score - INITIAL_SCORE))
+    .slice(0, 2);
 
-    // 4. 神神/反建制 (High Global + Chaos or Lib)
-    if (nat > 70) {
-        if (env > 60) return "神神 / 浪人 (Radical Anti-Establishment)";
-        if (eco > 60) return "高华 / 润学大师 (Global Elite)";
-        return "自由世界主义者 (Cosmopolitan)";
-    }
+  return {
+    label: bestArchetype.label,
+    emoji: bestArchetype.emoji,
+    description: bestArchetype.description,
+    dominantLeans,
+  };
+}
 
-    // --- 左右政治光谱 (Standard) ---
-
-    // 5. 左翼光谱
-    if (eco < 30) {
-        if (cul > 60) return "新左派 / 进步左翼 (Prog-Left)"; // Feminist, Anti-Tradition, Pro-Equality
-        if (cul < 40) return "托派 / 激进马克思主义 (Radical Left)";
-        return "网左 / 泛左翼 (Online Leftist)";
-    }
-
-    // 6. 右翼光谱
-    if (eco > 70) {
-        if (cul > 60) return "自由意志主义 (Libertarian)"; // Free Market, Free Social
-        if (cul < 40) return "新保守主义 / 精英右派 (Neo-Con)";
-        return "市场自由派 (Market Liberal)";
-    }
-
-    // --- 社会阶层/消费观念 (Based on "Android vs Apple" Theory implictly) ---
-    // Mid-range ideologies
-    if (eco > 60 && nat < 50) return "苹果人 / 现充中产 (Establishment Elite)"; // Pro-Market, Pro-China-ish
-    if (eco < 40 && nat > 50) return "安卓人 / 觉醒底层 (Disillusioned Class)"; // Pro-Equality, Anti-Nationalist? Maybe.
-
-    // 7. 中间派
-    if (env < 30) return "岁月静好 / 日子人 (Normie)";
-    return "吃瓜群众 / 键政观察员 (Centrist)";
+export function getIdeologyLabel(scores: ScoreMap): string {
+  return getResultSummary(scores).label;
 }

@@ -1,4 +1,5 @@
 import { Dimension } from '@/lib/types';
+import Image from 'next/image';
 
 interface Props {
     dimension: Dimension;
@@ -6,35 +7,83 @@ interface Props {
 }
 
 export default function AxisBar({ dimension, score }: Props) {
-    // Score 0 = Left Label 100%, Right Label 0%
-    // Score 100 = Left Label 0%, Right Label 100%
+    const leftPercent = 100 - score;
+    const rightPercent = score;
+
+    // Inset constants: sliderValue.png has decorative borders that need to be
+    // aligned with the inner track of sliderBar.png.
+    // We shift the fill slightly right and inset top/bottom so it sits in the slot.
+    const INSET_LEFT = 22;   // px offset from left edge of bar
+    const INSET_TOP = 5;    // px offset from top
+    const BAR_HEIGHT = 30;  // total bar height in px
+    const FILL_HEIGHT = BAR_HEIGHT - INSET_TOP * 2;
 
     return (
-        <div className="mb-6">
-            <div className="flex justify-between text-sm font-medium text-gray-700 mb-2">
-                <span style={{ color: dimension.color }}>{dimension.leftLabel}</span>
-                <span style={{ color: dimension.color }}>{dimension.rightLabel}</span>
-            </div>
-            <div className="relative h-4 bg-gray-200 rounded-full overflow-hidden shadow-inner">
-                {/* Left Side Bar */}
-                <div
-                    className="absolute top-0 left-0 h-full transition-all duration-1000"
+        <div className="w-full mb-1">
+            {/* Labels row */}
+            <div className="flex justify-between items-end mb-1 px-2">
+                <span
+                    className="font-serif font-bold text-sm tracking-wider"
                     style={{
-                        width: `${score}%`,
-                        backgroundColor: dimension.color,
-                        opacity: 0.8
+                        color: '#efe7d2ff',
+                        textShadow: '0 0 3px rgba(0,0,0,0.8), 0 1px 1px rgba(0,0,0,1)',
                     }}
+                >
+                    {dimension.leftLabel}&nbsp;[{leftPercent}%]
+                </span>
+                <span
+                    className="font-serif font-bold text-sm tracking-wider"
+                    style={{
+                        color: '#efe7d2ff',
+                        textShadow: '0 0 3px rgba(0,0,0,0.8), 0 1px 1px rgba(0,0,0,1)',
+                    }}
+                >
+                    {dimension.rightLabel}&nbsp;[{rightPercent}%]
+                </span>
+            </div>
+
+            {/* Slider bar */}
+            <div className="relative w-full" style={{ height: `${BAR_HEIGHT}px` }}>
+                {/* Dark bar background — full width */}
+                <Image
+                    src="/results_page_sliderBar.png"
+                    alt="slider bar"
+                    fill
+                    className="object-fill"
+                    sizes="(max-width: 768px) 100vw, 460px"
                 />
 
-                {/* Indicator */}
-                <div
-                    className="absolute top-0 h-full w-1 bg-white shadow-sm scale-125 z-10 transition-all duration-1000"
-                    style={{ left: `${score}%` }}
-                />
-            </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>{100 - score}%</span>
-                <span>{score}%</span>
+                {/* Golden fill — inset into the bar's inner track slot */}
+                {leftPercent > 0 && (
+                    <div
+                        className="absolute overflow-hidden"
+                        style={{
+                            // Start from INSET_LEFT to skip the decorative left border
+                            left: `${INSET_LEFT}px`,
+                            top: `${INSET_TOP}px`,
+                            height: `${FILL_HEIGHT}px`,
+                            // Fill represents the LEFT dimension intensity
+                            width: `calc(${leftPercent}% - ${INSET_LEFT * 2}px)`,
+                        }}
+                    >
+                        <div
+                            className="relative"
+                            style={{
+                                width: leftPercent > 0 ? `${(10000 / leftPercent)}%` : '100%',
+                                height: `${FILL_HEIGHT}px`,
+                            }}
+                        >
+
+                            <Image
+                                src="/results_page_sliderValue.png"
+                                alt="slider fill"
+                                fill
+                                className="object-fill"
+                                sizes="(max-width: 768px) 100vw, 460px"
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

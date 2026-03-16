@@ -1,115 +1,177 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
-import { calculateScore, getIdeologyLabel } from '@/lib/scoring';
-import { QUESTIONS } from '@/lib/questions';
-import { DIMENSIONS } from '@/lib/types';
+import { Suspense, useMemo } from 'react';
+import Link from 'next/link';
+import { calculateScore, getResultSummary } from '@/lib/scoring';
+import { DIMENSIONS, QUESTIONS } from '@/lib/config';
 import ResultRadarChart from '@/components/RadarChart';
 import AxisBar from '@/components/AxisBar';
-import Link from 'next/link';
-import { Home, Share2, Download } from 'lucide-react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 function ResultsContent() {
-    const searchParams = useSearchParams();
-    const [scores, setScores] = useState<any>(null);
-    const [label, setLabel] = useState("");
+  const searchParams = useSearchParams();
+  const answers = useMemo(() => {
+    const value: Record<string, string> = {};
+    QUESTIONS.forEach((question) => {
+      const selectedOption = searchParams.get(question.id);
+      if (selectedOption) value[question.id] = selectedOption;
+    });
+    return value;
+  }, [searchParams]);
 
-    useEffect(() => {
-        const answers: Record<string, string> = {};
-        QUESTIONS.forEach(q => {
-            const val = searchParams.get(q.id);
-            if (val) answers[q.id] = val; // Store as string ID
-        });
+  const scores = useMemo(() => calculateScore(answers, QUESTIONS), [answers]);
+  const summary = useMemo(() => getResultSummary(scores), [scores]);
 
-        const calculatedScores = calculateScore(answers, QUESTIONS);
-        setScores(calculatedScores);
-        setLabel(getIdeologyLabel(calculatedScores));
+  // Map archetype label to the new single-image assets
+  const archetypeAssets: Record<string, string> = {
+    '兔友战士': '/results_兔友战士.png',
+    '网左先锋': '/results_网左先锋.png',
+    '自由派知识分子': '/results_自由派.png',
+    '建制皇汉': '/results_兔友战士.png', // Fallback if image not provided
+    '理性中间派': '/results_理中派.png',
+    '解构乐子人': '/results_乐子人.png',
+    '加速主义者': '/results_加速主义.png',
+    '阶层焦虑者': '/results_阶层焦虑.png',
+  };
 
-        // Simulate submitting to API (fire and forget)
-        fetch('/api/submit', {
-            method: 'POST',
-            body: JSON.stringify(calculatedScores)
-        }).catch(console.error);
+  const imagePath = archetypeAssets[summary.label] || '/results_网左先锋.png';
 
-    }, [searchParams]);
+  return (
+    <div
+      className="min-h-[100dvh] relative py-8 px-[10vw] selection:bg-[#a8824f]/30"
+      style={{
+        backgroundImage: 'url("/background.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="max-w-[460px] mx-auto relative z-10 flex flex-col items-center">
 
-    if (!scores) return <div className="min-h-screen flex items-center justify-center">计算中...</div>;
+        {/* ── Title Banner ─────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full flex justify-center mb-4"
+        >
+          <div className="relative w-full max-w-[400px] h-[56px]">
+            <Image
+              src="/results_page_resultTitle.png"
+              alt="你的键政画像"
+              fill
+              className="object-contain"
+              sizes="400px"
+              priority
+            />
+          </div>
+        </motion.div>
 
-    return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4">
-            <div className="max-w-4xl mx-auto space-y-8">
+        {/* ── Result Image (Single Asset) ──────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.15 }}
+          className="relative w-full max-w-[280px] aspect-[4/3] mb-2"
+        >
+          <Image
+            src={imagePath}
+            alt={summary.label}
+            fill
+            className="object-contain drop-shadow-xl"
+            sizes="460px"
+            priority
+          />
+        </motion.div>
 
-                {/* Header Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-3xl shadow-xl p-8 text-center border border-purple-100 overflow-hidden relative"
-                >
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 to-blue-500" />
+        {/* ── Description Text ─────────────────────────────────────── */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="font-serif text-[#3f210d] text-sm md:text-base font-bold leading-relaxed text-center px-4 mb-2 max-w-[400px]"
+          style={{
+            textShadow: '0 1px 2px rgba(255,255,255,0.5)',
+            letterSpacing: '0.05em',
+          }}
+        >
+          {summary.description}
+        </motion.p>
 
-                    <h2 className="text-lg text-gray-500 mb-2 uppercase tracking-wider font-semibold">测试结果</h2>
-                    <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
-                            {label}
-                        </span>
-                    </h1>
-
-                    <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                        根据你的回答，你的互联网意识形态更偏向于上述标签。
-                        这不仅是一个标签，更是你在赛博空间中的生存姿态。
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Radar Chart */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-white rounded-3xl shadow-lg p-6 flex flex-col items-center justify-center"
-                    >
-                        <h3 className="text-xl font-bold text-gray-800 mb-4">综合雷达图</h3>
-                        <ResultRadarChart scores={scores} />
-                    </motion.div>
-
-                    {/* Axis Bars */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="bg-white rounded-3xl shadow-lg p-8"
-                    >
-                        <h3 className="text-xl font-bold text-gray-800 mb-6">详细维度分析</h3>
-                        <div className="space-y-2">
-                            {DIMENSIONS.map(dim => (
-                                <AxisBar key={dim.id} dimension={dim} score={scores[dim.id]} />
-                            ))}
-                        </div>
-                    </motion.div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex justify-center gap-4 mt-12">
-                    <Link href="/" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-xl hover:bg-gray-900 transition-colors">
-                        <Home size={20} />
-                        返回首页
-                    </Link>
-                    <Link href="/stats" className="flex items-center gap-2 px-6 py-3 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors">
-                        查看全网统计
-                    </Link>
-                </div>
-
-            </div>
+        {/* ── Decorative line ──────────────────────────────────────── */}
+        <div className="relative w-[70%] h-[8px] mb-4">
+          <Image
+            src="/results_page_line_2.png"
+            alt="decorative line"
+            fill
+            className="object-contain"
+            sizes="300px"
+          />
         </div>
-    );
+
+
+        {/* ── Radar Chart ──────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.35 }}
+          className="w-full flex items-center justify-center mb-2"
+        >
+          <ResultRadarChart scores={scores} />
+        </motion.div>
+
+        {/* ── Dimension Slider Bars ────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="w-full space-y-4 px-4"
+        >
+          {DIMENSIONS.map((dimension) => (
+            <AxisBar
+              key={dimension.id}
+              dimension={dimension}
+              score={scores[dimension.id] ?? 50}
+            />
+          ))}
+        </motion.div>
+
+        <div className="w-full flex flex-col sm:flex-row items-center gap-4 mt-24 mb-12 px-4">
+          <Link href="/stats" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
+            <Image 
+              src="/button.png" 
+              alt="按钮背景" 
+              fill 
+              className="object-contain"
+            />
+            <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
+              查看统计
+            </span>
+          </Link>
+          
+          <Link href="/quiz" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
+            <Image 
+              src="/button.png" 
+              alt="按钮背景" 
+              fill 
+              className="object-contain"
+            />
+            <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
+              再次测试
+            </span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function ResultsPage() {
-    return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <ResultsContent />
-        </Suspense>
-    )
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultsContent />
+    </Suspense>
+  );
 }
