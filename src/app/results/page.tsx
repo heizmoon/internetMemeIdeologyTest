@@ -42,14 +42,14 @@ function ResultsContent() {
 
   // Map archetype label to the new single-image assets
   const archetypeAssets: Record<string, string> = {
-    '兔友战士': '/results_兔友战士.png',
-    '网左先锋': '/results_网左先锋.png',
-    '自由派知识分子': '/results_自由派.png',
-    '建制皇汉': '/results_兔友战士.png', // Fallback if image not provided
-    '理性中间派': '/results_理中派.png',
-    '解构乐子人': '/results_乐子人.png',
-    '加速主义者': '/results_加速主义.png',
-    '阶层焦虑者': '/results_阶层焦虑.png',
+    '兔友战士': '/results_rabbit.png',
+    '网左先锋': '/results_leftist.png',
+    '自由派知识分子': '/results_liberal.png',
+    '建制皇汉': '/results_rabbit.png', // Fallback if image not provided
+    '理性中间派': '/results_moderate.png',
+    '解构乐子人': '/results_joy.png',
+    '加速主义者': '/results_acceleration.png',
+    '阶层焦虑者': '/results_anxiety.png',
   };
 
   const imagePath = archetypeAssets[summary.label] || '/results_网左先锋.png';
