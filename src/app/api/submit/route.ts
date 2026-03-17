@@ -13,27 +13,32 @@ export async function POST(request: Request) {
     // Get Cloudflare D1 database with multiple fallbacks
     let db: any = null;
     
+    // 1. Try RequestContext (Standard for next-on-pages)
     try {
       const context = getRequestContext();
       if (context && context.env) {
         db = (context.env as any).DB;
       }
-    } catch (e) {
-      console.log('getRequestContext failed, trying process.env');
-    }
+    } catch (e) {}
 
+    // 2. Try process.env (Fallback for some runtimes)
     if (!db && typeof process !== 'undefined' && process.env) {
       db = (process.env as any).DB;
     }
 
+    // 3. Try globalThis (Sometimes bindings are global)
+    if (!db && (globalThis as any).DB) {
+      db = (globalThis as any).DB;
+    }
+
     if (!db) {
-      console.error('D1 Database binding (DB) not found in RequestContext or process.env');
+      console.error('D1 Database binding (DB) not found');
       return NextResponse.json({ 
         success: false, 
         error: 'Database binding missing',
         diagnostics: {
+          hasRequestContext: !!getRequestContext(),
           hasProcessEnv: typeof process !== 'undefined',
-          envKeys: typeof process !== 'undefined' ? Object.keys(process.env) : []
         }
       }, { status: 500 });
     }

@@ -65,8 +65,8 @@ export default function ResultRadarChart({ scores }: Props) {
   }
 
   return (
-    <div className="w-full aspect-square max-w-[400px] min-h-[300px]">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="w-full h-[320px] max-w-[400px]">
+      <ResponsiveContainer width="100%" height={320}>
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
           <PolarGrid stroke="#bba078" strokeOpacity={0.6} />
           <PolarAngleAxis

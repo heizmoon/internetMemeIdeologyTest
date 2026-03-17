@@ -56,7 +56,7 @@ function ResultsContent() {
 
   return (
     <div
-      className="min-h-[100dvh] relative py-8 px-[10vw] selection:bg-[#a8824f]/30"
+      className="min-h-[100dvh] relative py-8 px-6 selection:bg-[#a8824f]/30"
     >
       <div className="max-w-[460px] mx-auto relative z-10 flex flex-col items-center">
 
