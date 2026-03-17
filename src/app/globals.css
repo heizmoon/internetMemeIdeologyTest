@@ -87,13 +87,14 @@ body {
 /* Media query for desktop: limit width and add shadow */
 @media (min-width: 500px) {
     .mobile-content {
-        max-width: 480px;
-        box-shadow: 0 0 100px rgba(0,0,0,0.8);
+        max-width: 400px;
+        box-shadow: 0 0 80px rgba(0,0,0,0.6);
         margin: 0 auto;
-        min-height: 95vh;
-        margin-top: 2.5vh;
-        margin-bottom: 2.5vh;
-        border-radius: 12px;
+        min-height: 96vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.05); /* Subtle frame edge */
     }
 }
 
