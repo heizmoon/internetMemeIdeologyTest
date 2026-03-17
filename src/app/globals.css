@@ -48,19 +48,50 @@ html, body {
     padding: 0;
     overflow-x: hidden;
     width: 100%;
+    height: 100%;
     -webkit-tap-highlight-color: transparent;
 }
 
 body {
     background-color: var(--parchment);
     color: var(--ink);
-    /* Simple parchment noise texture only, removed radial-gradient vignette */
-    background-image: 
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+    /* Global Background Image for all pages */
+    background-image: url("/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Container that fills the screen but centers the mobile content */
+.mobile-container {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* The actual "phone screen" area */
+.mobile-content {
+    width: 100%;
+    min-height: 100dvh;
+    position: relative;
+    background-color: transparent;
+    overflow-x: hidden;
+}
+
+/* Media query for desktop: limit width and add shadow */
+@media (min-width: 500px) {
+    .mobile-content {
+        max-width: 480px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.3);
+        margin: 0 auto;
+        /* Re-apply background specifically to the frame if needed, 
+           but here we keep it transparent to see the body background */
+    }
 }
 
 main {
     width: 100%;
-    max-width: 100vw;
     overflow-x: hidden;
 }

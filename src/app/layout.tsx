@@ -13,8 +13,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body className="antialiased font-serif">
+        <div className="mobile-container">
+          <div className="mobile-content">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

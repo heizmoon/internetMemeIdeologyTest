@@ -40,13 +40,6 @@ export default function StatsPage() {
   return (
     <div 
       className="min-h-[100dvh] relative py-12 px-8 selection:bg-[#a8824f]/30"
-      style={{
-        backgroundImage: 'url("/background.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
-      }}
     >
       <div className="max-w-[460px] mx-auto relative z-10 flex flex-col items-center">
         <h1 className="text-3xl font-black font-serif text-[#2a1508] mb-8 tracking-widest text-center" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.6)' }}>

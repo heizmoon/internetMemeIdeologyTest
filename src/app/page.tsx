@@ -5,12 +5,6 @@ export default function Home() {
   return (
     <main 
       className="min-h-[100dvh] relative flex flex-col items-center pt-[12vh] px-6 overflow-x-hidden selection:bg-[#a8824f]/30"
-      style={{
-        backgroundImage: 'url("/background.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center bottom',
-        backgroundRepeat: 'no-repeat',
-      }}
     >
       {/* Top Header */}
       <div className="relative text-center">
