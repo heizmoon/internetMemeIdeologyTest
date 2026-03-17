@@ -18,7 +18,7 @@ export default function StatsPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch('/meme-test/api/stats');
+        const response = await fetch('/api/stats');
         const data = await response.json();
         setStats(data);
       } catch (error) {
