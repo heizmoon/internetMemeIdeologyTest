@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useMemo } from 'react';
+import { Suspense, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { calculateScore, getResultSummary } from '@/lib/scoring';
 import { DIMENSIONS, QUESTIONS } from '@/lib/config';
@@ -23,6 +23,22 @@ function ResultsContent() {
 
   const scores = useMemo(() => calculateScore(answers, QUESTIONS), [answers]);
   const summary = useMemo(() => getResultSummary(scores), [scores]);
+  
+  // Submit results to the database
+  useEffect(() => {
+    const submitResults = async () => {
+      try {
+        await fetch('/meme-test/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(scores),
+        });
+      } catch (error) {
+        console.error('Failed to submit results:', error);
+      }
+    };
+    submitResults();
+  }, [scores]);
 
   // Map archetype label to the new single-image assets
   const archetypeAssets: Record<string, string> = {
@@ -138,30 +154,36 @@ function ResultsContent() {
           ))}
         </motion.div>
 
-        <div className="w-full flex flex-col sm:flex-row items-center gap-4 mt-24 mb-12 px-4">
-          <Link href="/stats" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
-            <Image 
-              src="/button.png" 
-              alt="按钮背景" 
-              fill 
-              className="object-contain"
-            />
-            <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
-              查看统计
-            </span>
-          </Link>
-          
-          <Link href="/quiz" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
-            <Image 
-              src="/button.png" 
-              alt="按钮背景" 
-              fill 
-              className="object-contain"
-            />
-            <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
-              再次测试
-            </span>
-          </Link>
+        <div className="w-full flex flex-col items-center gap-4 mt-16 mb-12 px-4">
+          <div className="w-full flex flex-col sm:flex-row gap-4">
+            <Link href="/stats" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
+              <Image 
+                src="/button.png" 
+                alt="按钮背景" 
+                fill 
+                className="object-contain"
+              />
+              <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
+                查看统计
+              </span>
+            </Link>
+            
+            <Link href="/quiz" className="w-full sm:flex-1 h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
+              <Image 
+                src="/button.png" 
+                alt="按钮背景" 
+                fill 
+                className="object-contain"
+              />
+              <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
+                再次测试
+              </span>
+            </Link>
+          </div>
+
+          <a href="/" className="mt-4 text-[#3f210d] font-serif font-bold text-lg hover:text-[#5a3a18] transition-colors flex items-center gap-2">
+            <span>← 返回实验室首页</span>
+          </a>
         </div>
       </div>
     </div>

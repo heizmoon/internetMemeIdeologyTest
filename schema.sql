@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS results (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    archetype TEXT NOT NULL,
+    scores TEXT NOT NULL, -- JSON string of axis scores
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
