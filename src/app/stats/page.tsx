@@ -14,15 +14,21 @@ interface RemoteStats {
 export default function StatsPage() {
   const [stats, setStats] = useState<RemoteStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const response = await fetch('/api/stats');
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch stats');
+        }
         const data = await response.json();
         setStats(data);
-      } catch (error) {
-        console.error('Failed to fetch stats:', error);
+      } catch (err: any) {
+        console.error('Failed to fetch stats:', err);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -51,6 +57,10 @@ export default function StatsPage() {
              <div className="flex-1 flex items-center justify-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8b6c45]"></div>
              </div>
+          ) : error ? (
+            <div className="flex-1 flex items-center justify-center text-red-800 font-serif text-center px-4">
+              <p>出错了: {error}<br /><span className="text-sm opacity-70">请检查 D1 绑定与数据库初始化。</span></p>
+            </div>
           ) : sortedDistribution.length > 0 ? (
             <div className="flex flex-col gap-6">
               {sortedDistribution.map((stat, idx) => (

@@ -13,13 +13,16 @@ export async function POST(request: Request) {
     // Get Cloudflare D1 database from request context
     const db = (getRequestContext().env as any).DB;
 
-    if (db) {
-      await db.prepare(
-        'INSERT INTO results (archetype, scores) VALUES (?, ?)'
-      )
-      .bind(label, JSON.stringify(scores))
-      .run();
+    if (!db) {
+      console.error('D1 Database binding (DB) not found');
+      return NextResponse.json({ success: false, error: 'Database binding missing' }, { status: 500 });
     }
+
+    await db.prepare(
+      'INSERT INTO results (archetype, scores) VALUES (?, ?)'
+    )
+    .bind(label, JSON.stringify(scores))
+    .run();
 
     return NextResponse.json({ success: true, label });
   } catch (error) {
