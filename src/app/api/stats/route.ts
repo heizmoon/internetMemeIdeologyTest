@@ -6,7 +6,7 @@ export const runtime = 'edge';
 
 export async function GET() {
   try {
-    const db = getRequestContext().env.DB;
+    const db = (getRequestContext().env as any).DB;
     
     if (!db) {
       return NextResponse.json({ error: 'Database not found' }, { status: 500 });

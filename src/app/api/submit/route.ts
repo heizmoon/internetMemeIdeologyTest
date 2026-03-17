@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const label = getIdeologyLabel(scores);
 
     // Get Cloudflare D1 database from request context
-    const db = getRequestContext().env.DB;
+    const db = (getRequestContext().env as any).DB;
 
     if (db) {
       await db.prepare(
