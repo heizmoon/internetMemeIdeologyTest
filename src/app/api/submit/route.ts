@@ -10,12 +10,32 @@ export async function POST(request: Request) {
     const scores = (await request.json()) as ScoreMap;
     const label = getIdeologyLabel(scores);
 
-    // Get Cloudflare D1 database from request context
-    const db = (getRequestContext().env as any).DB;
+    // Get Cloudflare D1 database with multiple fallbacks
+    let db: any = null;
+    
+    try {
+      const context = getRequestContext();
+      if (context && context.env) {
+        db = (context.env as any).DB;
+      }
+    } catch (e) {
+      console.log('getRequestContext failed, trying process.env');
+    }
+
+    if (!db && typeof process !== 'undefined' && process.env) {
+      db = (process.env as any).DB;
+    }
 
     if (!db) {
-      console.error('D1 Database binding (DB) not found');
-      return NextResponse.json({ success: false, error: 'Database binding missing' }, { status: 500 });
+      console.error('D1 Database binding (DB) not found in RequestContext or process.env');
+      return NextResponse.json({ 
+        success: false, 
+        error: 'Database binding missing',
+        diagnostics: {
+          hasProcessEnv: typeof process !== 'undefined',
+          envKeys: typeof process !== 'undefined' ? Object.keys(process.env) : []
+        }
+      }, { status: 500 });
     }
 
     await db.prepare(
@@ -25,8 +45,11 @@ export async function POST(request: Request) {
     .run();
 
     return NextResponse.json({ success: true, label });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to submit result:', error);
-    return NextResponse.json({ success: false }, { status: 500 });
+    return NextResponse.json({ 
+      success: false, 
+      error: error.message || 'Internal Server Error' 
+    }, { status: 500 });
   }
 }

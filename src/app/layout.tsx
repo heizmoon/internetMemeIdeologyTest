@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased font-serif">
+        <div className="fixed-background" />
         <div className="mobile-container">
           <div className="mobile-content">
             {children}
