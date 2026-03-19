@@ -44,6 +44,8 @@ interface Archetype {
   label: string;
   emoji: string;
   description: string;
+  figureReferences: string[];
+  figureNote: string;
   /** Ideal score coordinates [economic, governance, social, national] */
   center: Record<string, number>;
 }
@@ -53,57 +55,73 @@ const ARCHETYPES: Archetype[] = [
     label: '兔友战士',
     emoji: '🐰',
     description:
-      '你是键政圈坚定的建制派。你相信国家力量，认为外部势力是主要矛盾，社会应以稳定为先。你的对手叫你"粉红"，但你觉得爱国有什么错？',
-    center: { economic: 30, governance: 20, social: 25, national: 15 },
+      '2025 的大多数热点里，你更容易站到“别被带节奏、国家会处理、外部压力才是主因”这一边。你对秩序、统一叙事和国家能力有很强信心。',
+    figureReferences: ['沈逸'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 30, governance: 20, social: 22, national: 15 },
   },
   {
     label: '网左先锋',
     emoji: '⚒️',
     description:
-      '你是马克思主义左翼的网络传承者。阶级斗争是你的核心信仰，你关注工人权益和分配不公。你可能怀念某个时代，但你拒绝被简单标签化。',
-    center: { economic: 15, governance: 25, social: 45, national: 35 },
+      '你看到的世界，核心问题往往不是外部势力，而是平台压榨、阶层固化、资源分配和劳动者处境。你对“谁掌握生产和分配”尤其敏感。',
+    figureReferences: ['未明子'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 18, governance: 40, social: 56, national: 38 },
   },
   {
-    label: '自由派知识分子',
+    label: '自由派公知',
     emoji: '🌐',
     description:
-      '你追求普世价值，推崇言论自由和权力制衡。你倾向于用全球视野审视问题，认为开放与透明是解决问题的钥匙。你在键政圈常被叫做"神神"。',
-    center: { economic: 65, governance: 80, social: 80, national: 75 },
+      '你最关心的是程序、监督、表达空间和公开透明。无论热点怎么轮换，你都倾向先问一句：权力有没有被约束，普通人有没有说话的空间。',
+    figureReferences: ['柴静'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 44, governance: 78, social: 76, national: 66 },
   },
   {
     label: '建制皇汉',
     emoji: '🏯',
     description:
-      '你支持现有体制，同时拥有强烈的汉民族文化自豪感。"1644史观"让你振奋，你认为华夏文明本身是先进的，只需要找回正统。',
-    center: { economic: 40, governance: 20, social: 15, national: 10 },
+      '你既认同强国家，也非常看重汉文明主体性。到了 2025 的热点语境里，你往往最警惕身份稀释、历史叙事松动和文化正统被解构。',
+    figureReferences: ['吃瓜盟主'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 38, governance: 20, social: 14, national: 8 },
   },
   {
     label: '理性中间派',
     emoji: '💼',
     description:
-      '你不走极端，在每个议题上都试图寻找平衡。你可能被所有立场的人嘲笑为"骑墙派"，但你觉得务实思考比站队更重要。',
-    center: { economic: 50, governance: 50, social: 50, national: 50 },
+      '你对大多数热点的第一反应不是喊口号，而是先拆结构、找边界、看代价。你不爱把一切都推到极端，也不信情绪一上头就能解决问题。',
+    figureReferences: ['马督工'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 40, governance: 46, social: 64, national: 38 },
   },
   {
     label: '解构乐子人',
     emoji: '🎭',
     description:
-      '认真你就输了！你善于用阴阳怪气和"魔法对轰"消解一切严肃立场。在审查和经济压力的夹缝中，你选择了用荒诞对抗荒诞。',
-    center: { economic: 55, governance: 65, social: 60, national: 45 },
+      '你对宏大叙事天然起疑，看到热点更想拆台、玩梗、反讽。比起认真站队，你更习惯先看谁在表演、谁在把大家当傻子。',
+    figureReferences: ['峰哥（亡命天涯）'],
+    figureNote: '这里取的是娱乐化、反串化和阴阳感，不是观点等同。',
+    center: { economic: 46, governance: 62, social: 68, national: 48 },
   },
   {
-    label: '加速主义者',
+    label: '神友观察员',
     emoji: '🔥',
     description:
-      '你认为现有体制的矛盾无法通过改良解决。不如让矛盾加速爆发，推动根本变革。你是键政圈里最激进的一派，每天都盼着"大的要来了"。',
-    center: { economic: 70, governance: 75, social: 70, national: 55 },
+      '你对现有秩序、主流民族叙事和温和改良都没什么信心。很多 2025 热点在你眼里不是偶发翻车，而是整个系统和叙事一起失效的又一次证据。',
+    figureReferences: ['方脸'],
+    figureNote: '这里取的是强烈反建制和反主流民族叙事气质，不代表观点完全一致。',
+    center: { economic: 34, governance: 92, social: 82, national: 86 },
   },
   {
     label: '阶层焦虑者',
     emoji: '📱',
     description:
-      '苹果人还是安卓人？这是你最关心的问题。你敏锐地感知到阶层固化和贫富差距，经济地位和社会流动性是你评判一切政策的核心标尺。',
-    center: { economic: 35, governance: 45, social: 55, national: 40 },
+      '你对一切问题的感受，最后都会落回家世、门槛、机会和资源。你不一定最激进，但你会本能地追问：这事背后是不是又有普通人摸不到的通道？',
+    figureReferences: ['户晨风'],
+    figureNote: '气质参考，仅供娱乐，不代表观点完全一致。',
+    center: { economic: 20, governance: 52, social: 56, national: 32 },
   },
 ];
 
@@ -146,6 +164,8 @@ export function getResultSummary(scores: ScoreMap): ResultSummary {
     label: bestArchetype.label,
     emoji: bestArchetype.emoji,
     description: bestArchetype.description,
+    figureReferences: bestArchetype.figureReferences,
+    figureNote: bestArchetype.figureNote,
     dominantLeans,
   };
 }

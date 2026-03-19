@@ -1,0 +1,602 @@
+{
+  "title": "2025年度键政测评备选题库",
+  "description": "从正式版中落选、但保留供后续其他测评复用的问题。",
+  "dimensions": [
+    {
+      "id": "economic",
+      "name": "经济立场",
+      "leftLabel": "集体主义",
+      "rightLabel": "自由市场",
+      "color": "#ef4444"
+    },
+    {
+      "id": "governance",
+      "name": "治理偏好",
+      "leftLabel": "威权主义",
+      "rightLabel": "自由主义",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "social",
+      "name": "社会观念",
+      "leftLabel": "传统保守",
+      "rightLabel": "开放进步",
+      "color": "#22c55e"
+    },
+    {
+      "id": "national",
+      "name": "民族认同",
+      "leftLabel": "民族主义",
+      "rightLabel": "国际主义",
+      "color": "#f59e0b"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q_nanjing_museum_scandal",
+      "text": "南京博物院捐赠文物疑似流入拍卖市场的风波，引发了很多人对公立文化机构和文物监管的质疑。你的看法更接近哪种？",
+      "options": [
+        {
+          "id": "a",
+          "text": "先别急着阴谋论，文物流转本来就复杂，专业机构比网友更懂怎么处理。",
+          "effect": {
+            "governance": -8,
+            "social": -2
+          }
+        },
+        {
+          "id": "b",
+          "text": "这事肯定得查，但也别一有丑闻就喊整个系统全烂了。把链条查明白、把漏洞堵死，比情绪宣判更有用。",
+          "effect": {
+            "governance": -2,
+            "social": 1
+          }
+        },
+        {
+          "id": "c",
+          "text": "公众愤怒很正常，捐赠文物如果都能流进市场，说明公共文化资产的监督远远不够。",
+          "effect": {
+            "governance": 7,
+            "social": 3,
+            "economic": -2
+          }
+        },
+        {
+          "id": "d",
+          "text": "这类风波最刺痛人的地方，是大家越来越不相信公家保管、公家解释和公家追责会真正站在公众一边。",
+          "effect": {
+            "governance": 12,
+            "social": 4,
+            "economic": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_maipian",
+      "text": "博主「麦片」把经济困难主要归因为外部产业链压迫，强调执政党仍代表人民利益。你的看法是？",
+      "options": [
+        {
+          "id": "a",
+          "text": "外部打压确实是主要矛盾，内部很多问题都要放在国际竞争背景下理解。",
+          "effect": {
+            "national": -13,
+            "governance": -9,
+            "economic": -4
+          }
+        },
+        {
+          "id": "b",
+          "text": "外部打压当然有，但把今天的日子全讲成外部害的，就是回避内部分配失衡和治理失灵。",
+          "effect": {
+            "national": -3,
+            "governance": 1,
+            "economic": -1
+          }
+        },
+        {
+          "id": "c",
+          "text": "外部压力最多是催化剂，真正把人压得喘不过气的，是内部资源分配不公和制度门槛越来越高。",
+          "effect": {
+            "economic": -6,
+            "governance": 7,
+            "social": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "这套说法本质上就是替权力洗地。只要没有真正监督，经济一出问题就永远会有人拿外部当挡箭牌。",
+          "effect": {
+            "governance": 12,
+            "national": 6,
+            "economic": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_movie_political_reading",
+      "text": "2025 年很多人开始用电影、历史、文学作品影射现实，借「文艺解读」表达政治判断。你更认同哪种说法？",
+      "options": [
+        {
+          "id": "a",
+          "text": "文艺就该回归文艺，别什么都政治化，这只会制造无谓对立。",
+          "effect": {
+            "governance": -8,
+            "social": -3
+          }
+        },
+        {
+          "id": "b",
+          "text": "借作品影射现实没毛病，但要是见什么都像黑幕和寓言，最后只会把作品和现实都看歪。",
+          "effect": {
+            "social": 2,
+            "governance": 1
+          }
+        },
+        {
+          "id": "c",
+          "text": "大家拿作品影射现实，很多时候只是因为直说太敏感，只能借电影和文学绕着把话讲出来。",
+          "effect": {
+            "governance": 6,
+            "social": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "这已经不只是借作品说话，而是现实矛盾压到很多人只能靠文艺解读来集体泄愤、集体站队了。",
+          "effect": {
+            "governance": 8,
+            "social": 5,
+            "economic": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_magic_fight",
+      "text": "面对批评，有人会用「杜甫写《茅屋为秋风所破歌》也是境外势力」来反讽。你觉得这种「魔法对轰」说明了什么？",
+      "options": [
+        {
+          "id": "a",
+          "text": "这是网络乱象，应该加强管理，维护健康舆论环境。",
+          "effect": {
+            "governance": -13,
+            "social": -5,
+            "national": -3
+          }
+        },
+        {
+          "id": "b",
+          "text": "它好笑归好笑，但背后其实是大家已经懒得认真讲理了，因为认真讲也不一定有人让你讲。",
+          "effect": {
+            "governance": 3,
+            "social": 3
+          }
+        },
+        {
+          "id": "c",
+          "text": "它之所以流行，是因为正常表达空间变窄了，人们只能靠反讽和黑话发声。",
+          "effect": {
+            "governance": 11,
+            "social": 7,
+            "national": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "很多时候就是图一乐，既不真想说服谁，也不真相信哪套宏大叙事。",
+          "effect": {
+            "governance": 2,
+            "social": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_sex_theory",
+      "text": "戴梦提出「力工梭哈」理论，认为男性在婚姻中高投入、低保障，是一种高风险行为。你怎么看？",
+      "options": [
+        {
+          "id": "a",
+          "text": "这种说法在激化性别对立、破坏家庭观念，对社会稳定有害，应该被管控。",
+          "effect": {
+            "social": -13,
+            "governance": -8
+          }
+        },
+        {
+          "id": "b",
+          "text": "传统家庭分工并非全无道理，男女承担不同角色本来就很正常。",
+          "effect": {
+            "social": -8,
+            "economic": -2
+          }
+        },
+        {
+          "id": "c",
+          "text": "婚不婚本来就是个人的事，别老拿传统道德压人。现在很多男的扛不动，不是因为不努力，是因为成本太离谱。",
+          "effect": {
+            "governance": 7,
+            "social": 4,
+            "economic": 2
+          }
+        },
+        {
+          "id": "d",
+          "text": "这类现象背后主要是高房价、高成本和阶层压力，根源还是资源分配，不只是性别冲突。",
+          "effect": {
+            "economic": -9,
+            "social": 5,
+            "governance": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_welfare_birth",
+      "text": "面对低生育和青年失业，你认为最有效的办法是什么？",
+      "options": [
+        {
+          "id": "a",
+          "text": "国家应大规模提供住房、育儿、医疗和现金补贴，不能把成本都压给家庭。",
+          "effect": {
+            "economic": -12,
+            "governance": -2,
+            "social": 4
+          }
+        },
+        {
+          "id": "b",
+          "text": "可以补，但别一上来就大撒币。真正要紧的是让年轻人先有工作、有收入，而不是靠几张补贴把人哄去生孩子。",
+          "effect": {
+            "economic": -4,
+            "governance": -2,
+            "social": 2
+          }
+        },
+        {
+          "id": "c",
+          "text": "核心是放松管制、恢复市场活力。只要经济起来了，就业和生育自然会改善。",
+          "effect": {
+            "economic": 10,
+            "governance": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "生不生是个人自由，政府不该用政策诱导私人生活。",
+          "effect": {
+            "governance": 10,
+            "social": 8,
+            "economic": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_platform_regulation",
+      "text": "平台经济里，算法压榨和灵活就业争议越来越大。你更支持哪种方向？",
+      "options": [
+        {
+          "id": "a",
+          "text": "平台必须被强监管，劳动者权益优先，宁可牺牲一点效率。",
+          "effect": {
+            "economic": -12,
+            "governance": -3,
+            "social": 4
+          }
+        },
+        {
+          "id": "b",
+          "text": "平台当然该管，但别管到最后只剩失业和更贵的服务，底线守住就行，别把行业直接掐死。",
+          "effect": {
+            "economic": -3,
+            "governance": 1
+          }
+        },
+        {
+          "id": "c",
+          "text": "平台提供了大量机会，过度监管只会让就业更差。",
+          "effect": {
+            "economic": 10,
+            "governance": 3
+          }
+        },
+        {
+          "id": "d",
+          "text": "真正的问题是劳动者没有自主组织和谈判权，不只是算法。",
+          "effect": {
+            "economic": -10,
+            "governance": 8,
+            "social": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_free_speech_boundary",
+      "text": "对于被认为会「伤害社会稳定」的言论，你认为应该如何处理？",
+      "options": [
+        {
+          "id": "a",
+          "text": "只要可能引发动荡，就应尽早管控，稳定压倒一切。",
+          "effect": {
+            "governance": -14,
+            "social": -4,
+            "national": -3
+          }
+        },
+        {
+          "id": "b",
+          "text": "煽动暴力该管就管，但别拿“稳定”两个字把普通抱怨、骂两句和批评也一锅端了。",
+          "effect": {
+            "governance": 2,
+            "social": 2
+          }
+        },
+        {
+          "id": "c",
+          "text": "骂权力本来就该是正常权利。只要不是喊打喊杀，凭什么一批评现实就先给你扣帽子？",
+          "effect": {
+            "governance": 11,
+            "social": 6
+          }
+        },
+        {
+          "id": "d",
+          "text": "哪怕冒着混乱风险，也应尽可能扩大表达自由，否则社会只会越来越假。",
+          "effect": {
+            "governance": 14,
+            "social": 8,
+            "national": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_history_identity",
+      "text": "讨论历史时，你更看重哪种叙事框架？",
+      "options": [
+        {
+          "id": "a",
+          "text": "民族文化主体性最重要，先分清谁是自己人。",
+          "effect": {
+            "national": -13,
+            "social": -5
+          }
+        },
+        {
+          "id": "b",
+          "text": "历史归根到底看国家怎么治、秩序怎么立。民族也好、阶级也好，最后都得服从国家整合。",
+          "effect": {
+            "national": -7,
+            "governance": -6
+          }
+        },
+        {
+          "id": "c",
+          "text": "比起民族叙事，我更关心普通人的生存处境和阶层关系。",
+          "effect": {
+            "economic": -8,
+            "national": 2,
+            "social": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "历史应尽量去神圣化，把中国放进更大的全球文明脉络里看。",
+          "effect": {
+            "national": 12,
+            "social": 6,
+            "governance": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_crisis_reform",
+      "text": "如果你认同当前体制存在明显问题，你更倾向哪种路径？",
+      "options": [
+        {
+          "id": "a",
+          "text": "问题没那么大，修修补补就行，关键是别乱。",
+          "effect": {
+            "governance": -10,
+            "social": -2
+          }
+        },
+        {
+          "id": "b",
+          "text": "真要变也只能一点点推，先把监督和透明度往上抬，别总想着一脚把桌子掀了。",
+          "effect": {
+            "governance": 6,
+            "social": 3
+          }
+        },
+        {
+          "id": "c",
+          "text": "现有利益结构不会自己改，必须靠更强的社会压力逼出变化。",
+          "effect": {
+            "governance": 10,
+            "social": 6,
+            "economic": -2
+          }
+        },
+        {
+          "id": "d",
+          "text": "温和改良没有希望，矛盾越早爆发，越可能迎来真正转向。",
+          "effect": {
+            "governance": 14,
+            "social": 8,
+            "economic": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_gender_policy",
+      "text": "面对愈演愈烈的性别对立，你觉得公共政策应优先做什么？",
+      "options": [
+        {
+          "id": "a",
+          "text": "先把家庭这套秩序扶回来再说，不然男女继续这么互骂下去，最后谁都别想过安生日子。",
+          "effect": {
+            "social": -12,
+            "governance": -4
+          }
+        },
+        {
+          "id": "b",
+          "text": "这类议题闹到最后就是撕裂社会，国家就该出手压一压，别让极端话术把男女都逼成仇人。",
+          "effect": {
+            "social": -8,
+            "governance": -10
+          }
+        },
+        {
+          "id": "c",
+          "text": "重点是个体权利平等，政府不应替任何一方规定人生模板。",
+          "effect": {
+            "social": 10,
+            "governance": 8
+          }
+        },
+        {
+          "id": "d",
+          "text": "性别冲突本质上还是经济和福利分配问题，不解决生存压力就很难缓和。",
+          "effect": {
+            "economic": -8,
+            "social": 5,
+            "governance": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_foreign_capital",
+      "text": "你怎么看待外资、跨国企业和全球供应链？",
+      "options": [
+        {
+          "id": "a",
+          "text": "关键产业必须牢牢抓在自己手里，宁可慢一点也不能受制于人。",
+          "effect": {
+            "national": -12,
+            "economic": -4,
+            "governance": -2
+          }
+        },
+        {
+          "id": "b",
+          "text": "合作可以，但主动权必须在自己手里。赚钱归赚钱，别一不小心把命门和产业链都交出去。",
+          "effect": {
+            "national": -6,
+            "governance": -4,
+            "economic": 2
+          }
+        },
+        {
+          "id": "c",
+          "text": "全球化不是请客吃饭，谁更开放、规则更稳，资本和技术就往谁那边跑，关起门来只会自己掉队。",
+          "effect": {
+            "national": 10,
+            "economic": 8,
+            "governance": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "资本无国界，问题不在外资，而在谁掌握了分配权和监督权。",
+          "effect": {
+            "economic": -8,
+            "national": 5,
+            "governance": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_elite_fairness",
+      "text": "如果社会长期出现「普通人拼命考试，精英子女走捷径」的现象，你认为根源是什么？",
+      "options": [
+        {
+          "id": "a",
+          "text": "任何社会都有精英，别把个体成功都说成不公平。",
+          "effect": {
+            "economic": 8,
+            "governance": -4,
+            "social": -2
+          }
+        },
+        {
+          "id": "b",
+          "text": "很多时候不是制度天然坏，而是执行太松、监管太软，真把规则认真落实，未必会烂成现在这样。",
+          "effect": {
+            "governance": -6,
+            "economic": 2
+          }
+        },
+        {
+          "id": "c",
+          "text": "这就是阶层固化摆在脸上了。教育、医疗、机会都在往上层自己人那里流，普通人再卷也越来越像陪跑。",
+          "effect": {
+            "economic": -10,
+            "social": 6,
+            "governance": 4
+          }
+        },
+        {
+          "id": "d",
+          "text": "本质是权力缺乏公开监督，特权天然会吞掉公平。",
+          "effect": {
+            "governance": 13,
+            "social": 4,
+            "economic": -2
+          }
+        }
+      ]
+    },
+    {
+      "id": "q_pension_dual_track",
+      "text": "养老金双轨、体制内外福利差距这些问题，总会在经济下行时重新被翻出来。你更认同哪种说法？",
+      "options": [
+        {
+          "id": "a",
+          "text": "体制内本来就承担更多责任和稳定成本，待遇更好很正常，没必要拿平均主义瞎起哄。",
+          "effect": {
+            "economic": 5,
+            "governance": -6,
+            "social": -2
+          }
+        },
+        {
+          "id": "b",
+          "text": "差距可以有，但不能太夸张。至少不能让普通人一眼看出自己和体制内根本不是一个待遇层级。",
+          "effect": {
+            "economic": -2,
+            "governance": -1,
+            "social": 1
+          }
+        },
+        {
+          "id": "c",
+          "text": "大家不满的不是谁养老金高，而是公共资源和安全感长期优先保体制内，普通人永远排在后面。",
+          "effect": {
+            "economic": -8,
+            "governance": 3,
+            "social": 3
+          }
+        },
+        {
+          "id": "d",
+          "text": "双轨制就是明摆着把人分成两种命：一种人一辈子被制度托底，另一种人只能自己硬扛。",
+          "effect": {
+            "economic": -10,
+            "governance": 4,
+            "social": 4
+          }
+        }
+      ]
+    }
+  ]
+}

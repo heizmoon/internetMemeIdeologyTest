@@ -44,11 +44,11 @@ function ResultsContent() {
   const archetypeAssets: Record<string, string> = {
     '兔友战士': '/results_rabbit.png',
     '网左先锋': '/results_leftist.png',
-    '自由派知识分子': '/results_liberal.png',
+    '自由派公知': '/results_liberal.png',
     '建制皇汉': '/results_rabbit.png', // Fallback if image not provided
     '理性中间派': '/results_moderate.png',
     '解构乐子人': '/results_joy.png',
-    '加速主义者': '/results_acceleration.png',
+    '神友观察员': '/results_acceleration.png',
     '阶层焦虑者': '/results_anxiety.png',
   };
 
@@ -108,6 +108,25 @@ function ResultsContent() {
         >
           {summary.description}
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.34 }}
+          className="w-full max-w-[420px] px-4 mb-3"
+        >
+          <div className="rounded-2xl border border-[#8b6c45]/20 bg-[#fdf6e3]/65 px-4 py-3 text-center shadow-sm">
+            <p className="text-[11px] tracking-[0.18em] uppercase text-[#8b6c45] font-serif font-black">
+              气质参考人物
+            </p>
+            <p className="mt-2 text-sm md:text-base text-[#3f210d] font-serif font-bold leading-relaxed">
+              {summary.figureReferences.join(' / ')}
+            </p>
+            <p className="mt-1 text-xs text-[#6f5138] font-serif leading-relaxed">
+              {summary.figureNote}
+            </p>
+          </div>
+        </motion.div>
 
         {/* ── Decorative line ──────────────────────────────────────── */}
         <div className="relative w-[70%] h-[8px] mb-4">

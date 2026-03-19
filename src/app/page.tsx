@@ -69,6 +69,13 @@ export default function Home() {
             统计结果 🌐
           </div>
         </Link>
+
+        <p
+          className="mt-10 max-w-[92vw] md:max-w-lg text-center font-serif text-xs md:text-sm font-bold leading-7 text-[#5a3a18]"
+          style={{ textShadow: '0 1px 2px rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}
+        >
+          本测试中的题目与结果分析均由 AI 基于公开网络舆论素材整理生成，仅供娱乐与讨论参考，不代表开发者本人立场。
+        </p>
       </div>
 
 

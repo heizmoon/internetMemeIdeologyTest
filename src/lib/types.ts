@@ -40,5 +40,7 @@ export interface ResultSummary {
   label: string;
   emoji: string;
   description: string;
+  figureReferences: string[];
+  figureNote: string;
   dominantLeans: DominantLean[];
 }
