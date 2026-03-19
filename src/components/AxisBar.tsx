@@ -51,6 +51,7 @@ export default function AxisBar({ dimension, score }: Props) {
                     fill
                     className="object-fill"
                     sizes="(max-width: 768px) 100vw, 460px"
+                    unoptimized
                 />
 
                 {/* Golden fill — inset into the bar's inner track slot */}
@@ -80,6 +81,7 @@ export default function AxisBar({ dimension, score }: Props) {
                                 fill
                                 className="object-fill"
                                 sizes="(max-width: 768px) 100vw, 460px"
+                                unoptimized
                             />
                         </div>
                     </div>

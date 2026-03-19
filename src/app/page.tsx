@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Settings2 } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -35,7 +34,7 @@ export default function Home() {
       </div>
 
       {/* Buttons Selection */}
-      <div className="mt-14 flex flex-col flex-1 items-center gap-6 w-full max-w-[280px] md:max-w-[320px] z-10">
+      <div className="mt-14 flex flex-col items-center gap-6 w-full max-w-[280px] md:max-w-[320px] z-10">
         
         {/* Start Button */}
         <Link href="/quiz" className="block w-full no-underline hover:scale-105 active:scale-95 transition-transform drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)]">
@@ -69,9 +68,11 @@ export default function Home() {
             统计结果 🌐
           </div>
         </Link>
+      </div>
 
+      <div className="mt-auto w-full max-w-[85vw] md:max-w-md px-0 pb-10 md:pb-12 pt-16 text-center z-10 flex justify-center">
         <p
-          className="mt-10 max-w-[92vw] md:max-w-lg text-center font-serif text-xs md:text-sm font-bold leading-7 text-[#5a3a18]"
+          className="font-serif text-xs md:text-sm font-bold leading-7 text-[#5a3a18]"
           style={{ textShadow: '0 1px 2px rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}
         >
           本测试中的题目与结果分析均由 AI 基于公开网络舆论素材整理生成，仅供娱乐与讨论参考，不代表开发者本人立场。

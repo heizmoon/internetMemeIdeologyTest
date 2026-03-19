@@ -110,7 +110,7 @@ const ARCHETYPES: Archetype[] = [
     emoji: '🔥',
     description:
       '你对现有秩序、主流民族叙事和温和改良都没什么信心。很多 2025 热点在你眼里不是偶发翻车，而是整个系统和叙事一起失效的又一次证据。',
-    figureReferences: ['方脸'],
+    figureReferences: ['多伦多方脸'],
     figureNote: '这里取的是强烈反建制和反主流民族叙事气质，不代表观点完全一致。',
     center: { economic: 34, governance: 92, social: 82, national: 86 },
   },

@@ -39,18 +39,20 @@ export default function QuizRunner() {
 
   return (
     <div className="w-full max-w-3xl mx-auto px-4">
-      <div className="mb-8 flex items-center justify-center">
-        <div className="w-full max-w-[80%] h-[6px] bg-[#d4c5a3]/50 rounded-full overflow-hidden shadow-inner border border-[#bba078]/30">
-          <motion.div
-            className="h-full bg-[#8b6c45] rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.35, ease: 'easeInOut' }}
-          />
+      <div className="mb-10 max-w-2xl mx-auto px-3 py-3 md:px-4 md:py-4 border border-[#8b6c45]/14 bg-[rgba(255,248,228,0.16)] shadow-[0_8px_24px_rgba(93,61,25,0.06)]">
+        <div className="flex items-center justify-center">
+          <div className="w-full h-[8px] bg-[#d4c5a3]/50 rounded-full overflow-hidden shadow-inner border border-[#bba078]/30">
+            <motion.div
+              className="h-full bg-gradient-to-r from-[#8b6c45] via-[#a78255] to-[#8b6c45] rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="relative min-h-[440px]">
+      <div className="relative min-h-[460px]">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
@@ -60,25 +62,28 @@ export default function QuizRunner() {
             transition={{ duration: 0.28, ease: 'easeOut' }}
             className="w-full"
           >
-            <div className="p-4 md:p-8 mb-8 relative">
+            <div className="max-w-2xl mx-auto px-5 py-6 md:px-7 md:py-8 mb-10 relative border border-[#8b6c45]/18 bg-[linear-gradient(180deg,rgba(255,248,228,0.4),rgba(248,236,205,0.24))] shadow-[0_10px_30px_rgba(93,61,25,0.08)] backdrop-blur-[1px]">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-[1px] bg-gradient-to-r from-transparent via-[#8b6c45] to-transparent opacity-60"></div>
-              <p className="text-xs md:text-sm uppercase tracking-[0.2em] text-[#8b6c45] font-serif font-bold mb-4 text-center">
-                第 {currentIndex + 1} 题
+              <p className="text-[11px] md:text-xs uppercase tracking-[0.28em] text-[#8b6c45]/80 font-serif font-bold mb-4 text-center">
+                第 {currentIndex + 1} 题 / 共 {QUESTIONS.length} 题
               </p>
-              <h1 className="font-black font-serif text-[#2a1508] leading-relaxed tracking-wider text-center" style={{ fontSize: '18px', textShadow: '0 1px 1px rgba(255,255,255,0.6)' }}>
+              <h1
+                className="font-black font-serif text-[#2a1508] leading-[1.62] tracking-[0.025em] text-left md:text-center"
+                style={{ fontSize: '18px', textShadow: '0 1px 1px rgba(255,255,255,0.6)' }}
+              >
                 {currentQuestion.text}
               </h1>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-[#8b6c45] to-transparent opacity-60"></div>
             </div>
 
-            <div className="flex flex-col gap-4 max-w-2xl mx-auto">
+            <div className="flex flex-col gap-7 max-w-2xl mx-auto">
               {currentQuestion.options.map((option, index) => (
                 <button
                   key={option.id}
                   onClick={() => handleAnswer(option.id)}
                   className={cn(
-                    'group w-full text-left p-4 md:p-5 transition-all duration-300 relative overflow-hidden',
-                    'bg-[#fdf6e3]/50 border border-[#8b6c45]/20 rounded-xl hover:border-[#8b6c45]/60 hover:bg-[#fdf6e3]/80 active:bg-[#d4c5a3]/40 shadow-sm hover:shadow-md',
+                    'group w-full text-left px-4 py-4 md:px-5 md:py-5 transition-all duration-300 relative overflow-hidden',
+                    'bg-[rgba(253,246,227,0.6)] border border-[#8b6c45]/20 rounded-2xl hover:border-[#8b6c45]/60 hover:bg-[rgba(253,246,227,0.84)] active:bg-[#d4c5a3]/40 shadow-[0_8px_18px_rgba(93,61,25,0.08)] hover:shadow-[0_12px_24px_rgba(93,61,25,0.14)]',
                     'flex items-center gap-4 md:gap-6'
                   )}
                 >
@@ -92,7 +97,7 @@ export default function QuizRunner() {
                   >
                     {String.fromCharCode(65 + index)}
                   </div>
-                  <span className="text-sm md:text-base text-[#3f210d] font-serif font-bold group-hover:text-[#1a0d05] relative z-10 leading-relaxed" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.4)', letterSpacing: '0.01em' }}>
+                  <span className="text-base md:text-lg text-[#3f210d] font-serif font-bold group-hover:text-[#1a0d05] relative z-10 leading-[1.75]" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.4)', letterSpacing: '0.01em' }}>
                     {option.text}
                   </span>
                 </button>

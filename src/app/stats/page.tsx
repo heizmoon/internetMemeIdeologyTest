@@ -113,7 +113,7 @@ export default function StatsPage() {
             </span>
           </Link>
 
-          <a href="/" className="text-[#3f210d] font-serif font-bold text-lg hover:text-[#5a3a18] transition-colors flex items-center gap-2">
+          <a href="https://20061019.xyz" className="text-[#3f210d] font-serif font-bold text-lg hover:text-[#5a3a18] transition-colors flex items-center gap-2">
             <span>← 返回实验室首页</span>
           </a>
         </div>
