@@ -12,7 +12,7 @@ export default function Home() {
           className="text-2xl md:text-3xl font-serif font-black tracking-widest bg-gradient-to-b from-[#e3caa2] via-[#c69a5a] to-[#805a30] bg-clip-text text-transparent"
           style={{ WebkitTextStroke: '1px rgba(92, 60, 30, 0.4)', filter: 'drop-shadow(0px 4px 2px rgba(0,0,0,0.5))' }}
         >
-          2025年度健政话题
+          2025年度键政话题
         </h2>
       </div>
 
@@ -30,7 +30,7 @@ export default function Home() {
       <div className="mt-8 max-w-[85vw] md:max-w-md text-center z-10 w-full flex justify-center">
         <p className="font-serif text-[#3f210d] text-base md:text-lg font-bold leading-[1.8] tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>
           通过一系列网络热门话题（如：4+4，苹果人）<br />
-          的灵魂拷问，测定你在健政圈的身位。
+          的灵魂拷问，测定你在键政圈的身位。
         </p>
       </div>
 
@@ -71,16 +71,6 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* Admin Link (Unobtrusive) */}
-      <div className="mt-auto pb-6 z-10 w-full flex justify-center">
-        <Link
-          href="/admin"
-          className="inline-flex items-center gap-1.5 text-xs text-[#5c3c1e]/60 hover:text-[#5c3c1e]/90 transition-colors drop-shadow-sm font-medium bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm"
-        >
-          <Settings2 size={14} />
-          <span>管理配置 (Admin)</span>
-        </Link>
-      </div>
 
     </main>
   );
