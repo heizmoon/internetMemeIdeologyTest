@@ -21,8 +21,15 @@ export default function StatsPage() {
       try {
         const response = await fetch('/api/stats');
         if (!response.ok) {
-          const errorData = await response.json() as { error?: string };
-          throw new Error(errorData.error || 'Failed to fetch stats');
+          let errorMessage = 'Failed to fetch stats';
+          try {
+            const errorData = await response.json() as { error?: string, diagnostic?: string };
+            errorMessage = errorData.error || errorMessage;
+            if (errorData.diagnostic) errorMessage += ` - ${errorData.diagnostic}`;
+          } catch (e) {
+            errorMessage = `Server Error (${response.status}): ${await response.text()}`.substring(0, 150);
+          }
+          throw new Error(errorMessage);
         }
         const data = await response.json() as RemoteStats;
         setStats(data);
