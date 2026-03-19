@@ -52,12 +52,18 @@ export default function StatsPage() {
 
   return (
     <div 
-      className="min-h-[100dvh] relative py-12 px-8 selection:bg-[#a8824f]/30"
+      className="min-h-[100dvh] relative pt-2 md:pt-4 px-8 selection:bg-[#a8824f]/30"
     >
-      <div className="max-w-[460px] mx-auto relative z-10 flex flex-col items-center">
-        <h1 className="text-3xl font-black font-serif text-[#2a1508] mb-8 tracking-widest text-center" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.6)' }}>
+      <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-8">
+        <h1 
+          className="text-xl md:text-2xl font-serif font-black tracking-[0.2em] text-[#f2ecd9] drop-shadow-lg text-center px-4"
+          style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.4)' }}
+        >
           {loading ? '正在加载统计数据...' : `全网统计数据 (共 ${stats?.total || 0} 人)`}
         </h1>
+      </div>
+
+      <div className="max-w-[460px] mx-auto relative z-10 flex flex-col items-center">
 
         <div className="w-full bg-[#fdf6e3]/40 border border-[#8b6c45]/20 rounded-2xl p-6 mb-8 shadow-sm min-h-[300px] flex flex-col">
           {loading ? (

@@ -4,31 +4,31 @@ import { Settings2 } from 'lucide-react';
 export default function Home() {
   return (
     <main 
-      className="min-h-[100dvh] relative flex flex-col items-center pt-[12vh] px-6 overflow-x-hidden selection:bg-[#a8824f]/30"
+      className="min-h-[100dvh] relative flex flex-col items-center pt-2 md:pt-4 px-6 overflow-x-hidden selection:bg-[#a8824f]/30"
     >
-      {/* Top Header */}
-      <div className="relative text-center">
+      {/* Top Header Section - Align with dark banner area of background */}
+      <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-10">
         <h2 
-          className="text-2xl md:text-3xl font-serif font-black tracking-widest bg-gradient-to-b from-[#e3caa2] via-[#c69a5a] to-[#805a30] bg-clip-text text-transparent"
-          style={{ WebkitTextStroke: '1px rgba(92, 60, 30, 0.4)', filter: 'drop-shadow(0px 4px 2px rgba(0,0,0,0.5))' }}
+          className="text-xl md:text-2xl font-serif font-black tracking-[0.2em] text-[#f2ecd9] drop-shadow-lg"
+          style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.4)' }}
         >
           2025年度键政话题
         </h2>
       </div>
 
-      {/* Main Title */}
-      <div className="relative mt-8 text-center">
+      {/* Main Title - Hero Section */}
+      <div className="relative mt-2 text-center z-10">
         <h1 
           className="text-5xl md:text-7xl font-serif font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#f2ecd9] to-[#d6bc8b]"
-          style={{ WebkitTextStroke: '1px rgba(92, 60, 30, 0.5)', filter: 'drop-shadow(0px 4px 4px rgba(0,0,0,0.6))' }}
+          style={{ WebkitTextStroke: '2px rgba(62, 40, 20, 0.8)', filter: 'drop-shadow(0px 8px 6px rgba(0,0,0,0.5))' }}
         >
           你的身份是？
         </h1>
       </div>
 
       {/* Description */}
-      <div className="mt-8 max-w-[85vw] md:max-w-md text-center z-10 w-full flex justify-center">
-        <p className="font-serif text-[#3f210d] text-base md:text-lg font-bold leading-[1.8] tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.4)', letterSpacing: '0.05em' }}>
+      <div className="mt-10 max-w-[85vw] md:max-w-md text-center z-10 w-full flex justify-center">
+        <p className="font-serif text-[#3f210d] text-lg md:text-xl font-black leading-[1.8] tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
           通过一系列网络热门话题（如：4+4，苹果人）<br />
           的灵魂拷问，测定你在键政圈的身位。
         </p>
