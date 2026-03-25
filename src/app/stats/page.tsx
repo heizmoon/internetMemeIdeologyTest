@@ -51,11 +51,11 @@ export default function StatsPage() {
     })) : [];
 
   return (
-    <div 
+    <div
       className="min-h-[100dvh] relative pt-2 md:pt-4 px-8 selection:bg-[#a8824f]/30"
     >
       <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-8">
-        <h1 
+        <h1
           className="text-xl md:text-2xl font-serif font-black tracking-[0.2em] text-[#f2ecd9] drop-shadow-lg text-center px-4"
           style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.4)' }}
         >
@@ -67,9 +67,9 @@ export default function StatsPage() {
 
         <div className="w-full bg-[#fdf6e3]/40 border border-[#8b6c45]/20 rounded-2xl p-6 mb-8 shadow-sm min-h-[300px] flex flex-col">
           {loading ? (
-             <div className="flex-1 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8b6c45]"></div>
-             </div>
+            <div className="flex-1 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#8b6c45]"></div>
+            </div>
           ) : error ? (
             <div className="flex-1 flex items-center justify-center text-red-800 font-serif text-center px-4">
               <p>出错了: {error}<br /><span className="text-sm opacity-70">请检查 D1 绑定与数据库初始化。</span></p>
@@ -102,10 +102,10 @@ export default function StatsPage() {
 
         <div className="flex flex-col items-center gap-6">
           <Link href="/quiz" className="w-[200px] h-[60px] relative group active:scale-95 transition-transform flex items-center justify-center">
-            <Image 
-              src="/button.png" 
-              alt="按钮背景" 
-              fill 
+            <Image
+              src="/button.png"
+              alt="按钮背景"
+              fill
               className="object-contain"
             />
             <span className="relative z-10 text-[#2a1508] font-serif font-black text-xl tracking-widest drop-shadow-sm group-hover:text-[#5a3a18] transition-colors pb-1">
@@ -113,7 +113,7 @@ export default function StatsPage() {
             </span>
           </Link>
 
-          <a href="https://20061019.xyz" className="text-[#3f210d] font-serif font-bold text-lg hover:text-[#5a3a18] transition-colors flex items-center gap-2">
+          <a href="https://120061019.xyz" className="text-[#3f210d] font-serif font-bold text-lg hover:text-[#5a3a18] transition-colors flex items-center gap-2">
             <span>← 返回实验室首页</span>
           </a>
         </div>
