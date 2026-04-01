@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import {
   ResponsiveContainer,
   RadarChart,
@@ -53,31 +52,15 @@ function CustomTick(props: any) {
 }
 
 export default function ResultRadarChart({ scores }: Props) {
-  const [mounted, setMounted] = useState(false);
   const data = buildEightAxes(scores);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="w-full h-[300px] flex items-center justify-center font-serif italic text-sm text-[#8b6c45]">生成画像中...</div>;
-  }
 
   return (
     <div className="w-full h-[320px] max-w-[400px]">
       <ResponsiveContainer width="100%" height={320}>
         <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
           <PolarGrid stroke="#bba078" strokeOpacity={0.6} />
-          <PolarAngleAxis
-            dataKey="subject"
-            tick={CustomTick}
-          />
-          <PolarRadiusAxis
-            domain={[0, 100]}
-            tick={false}
-            axisLine={false}
-          />
+          <PolarAngleAxis dataKey="subject" tick={CustomTick} />
+          <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
           <Radar
             name="Ideology Profile"
             dataKey="value"

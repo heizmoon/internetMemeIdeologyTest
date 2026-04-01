@@ -1,85 +1,83 @@
 import Link from 'next/link';
+import TopBar from '@/components/TopBar';
 
 export default function Home() {
   return (
-    <main 
-      className="min-h-[100dvh] relative flex flex-col items-center pt-2 md:pt-4 px-6 overflow-x-hidden selection:bg-[#a8824f]/30"
+    <main
+      className="min-h-[100dvh] relative flex flex-col items-center pt-2 md:pt-4 px-5 md:px-6 overflow-x-hidden selection:bg-[#a8824f]/30"
     >
-      {/* Top Header Section - Align with dark banner area of background */}
-      <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-10">
-        <h2 
-          className="text-xl md:text-2xl font-serif font-black tracking-[0.2em] text-[#f2ecd9] drop-shadow-lg"
-          style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.4)' }}
-        >
-          2025年度键政话题
-        </h2>
-      </div>
+      <TopBar />
 
-      {/* Main Title - Hero Section */}
-      <div className="relative mt-2 text-center z-10">
-        <h1 
-          className="text-5xl md:text-7xl font-serif font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#f2ecd9] to-[#d6bc8b]"
-          style={{ WebkitTextStroke: '2px rgba(62, 40, 20, 0.8)', filter: 'drop-shadow(0px 8px 6px rgba(0,0,0,0.5))' }}
-        >
-          你的身份是？
-        </h1>
-      </div>
+      <section className="relative z-10 w-full max-w-md flex flex-col items-center">
+        <div className="absolute inset-x-2 top-2 h-[13.5rem] rounded-[36px] bg-[radial-gradient(circle_at_top,rgba(255,244,214,0.36),rgba(255,244,214,0.12)_58%,transparent_85%)] blur-md"></div>
 
-      {/* Description */}
-      <div className="mt-10 max-w-[85vw] md:max-w-md text-center z-10 w-full flex justify-center">
-        <p className="font-serif text-[#3f210d] text-lg md:text-xl font-black leading-[1.8] tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.6)', letterSpacing: '0.05em' }}>
-          通过一系列网络热门话题（如：4+4，苹果人）<br />
-          的灵魂拷问，测定你在键政圈的身位。
-        </p>
-      </div>
-
-      {/* Buttons Selection */}
-      <div className="mt-14 flex flex-col items-center gap-6 w-full max-w-[280px] md:max-w-[320px] z-10">
-        
-        {/* Start Button */}
-        <Link href="/quiz" className="block w-full no-underline hover:scale-105 active:scale-95 transition-transform drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)]">
-          <div
-            className="w-full flex items-center justify-center font-serif font-black text-xl md:text-2xl text-[#2a1508] tracking-wider"
-            style={{
-              backgroundImage: 'url("/button.png")',
-              backgroundSize: '100% 100%',
-              backgroundRepeat: 'no-repeat',
-              aspectRatio: '586 / 101',
-              textShadow: '0 1px 0 rgba(255,220,160,0.6), 0 2px 4px rgba(0,0,0,0.3)',
-            }}
+        <div className="relative text-center">
+          <h1
+            className="text-[2.7rem] md:text-[4.3rem] font-serif font-black tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-b from-[#fff8eb] via-[#f2e3be] to-[#b6905d]"
+            style={{ WebkitTextStroke: '1.5px rgba(73, 48, 24, 0.72)', filter: 'drop-shadow(0px 5px 4px rgba(0,0,0,0.32))' }}
           >
-            立即测试 →
-          </div>
-        </Link>
-        
-        {/* Stats Button */}
-        <Link href="/stats" className="block w-full no-underline hover:scale-105 active:scale-95 transition-transform drop-shadow-[0_4px_6px_rgba(0,0,0,0.5)]">
-          <div
-            className="w-full flex items-center justify-center font-serif font-black text-xl md:text-2xl text-[#2a1508] tracking-wider"
-            style={{
-              backgroundImage: 'url("/button.png")',
-              backgroundSize: '100% 100%',
-              backgroundRepeat: 'no-repeat',
-              aspectRatio: '586 / 101',
-              textShadow: '0 1px 0 rgba(255,220,160,0.6), 0 2px 4px rgba(0,0,0,0.3)',
-              filter: 'saturate(0.85) brightness(0.95)',
-            }}
+            你的身份是?
+          </h1>
+        </div>
+
+        <div className="relative mt-8 w-full max-w-[36ch]">
+          <div className="mb-4 h-px w-20 bg-gradient-to-r from-[#8b6c45]/0 via-[#8b6c45]/55 to-[#8b6c45]/0"></div>
+          <p
+            className="font-serif text-[#3f210d] text-[1.32rem] md:text-[1.45rem] font-bold leading-[1.8] tracking-[0.03em] text-left whitespace-pre-line"
+            style={{ textShadow: '0 1px 2px rgba(255,255,255,0.55)' }}
           >
-            统计结果 🌐
-          </div>
-        </Link>
+            {'通过一系列网络热门话题\n的灵魂拷问，测定你在键政圈的身份。'}
+          </p>
+        </div>
+      </section>
+
+      <section className="relative z-10 w-full max-w-md flex flex-col items-center">
+        <div className="mt-12 flex flex-col items-center gap-4 w-full max-w-[290px] md:max-w-[320px]">
+          <Link href="/quiz" className="block w-full no-underline hover:scale-[1.03] active:scale-95 transition-transform drop-shadow-[0_4px_6px_rgba(0,0,0,0.45)]">
+            <div
+              className="w-full flex items-center justify-center font-serif font-black text-[1.45rem] md:text-[1.7rem] text-[#2a1508] tracking-[0.08em]"
+              style={{
+                backgroundImage: 'url("/button.png")',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                aspectRatio: '586 / 101',
+                textShadow: '0 1px 0 rgba(255,220,160,0.6), 0 2px 4px rgba(0,0,0,0.3)',
+              }}
+            >
+              立即测试 →
+            </div>
+          </Link>
+
+          <Link href="/stats" className="block w-full no-underline hover:scale-[1.03] active:scale-95 transition-transform drop-shadow-[0_4px_6px_rgba(0,0,0,0.45)]">
+            <div
+              className="w-full flex items-center justify-center font-serif font-black text-[1.45rem] md:text-[1.7rem] text-[#2a1508] tracking-[0.08em]"
+              style={{
+                backgroundImage: 'url("/button.png")',
+                backgroundSize: '100% 100%',
+                backgroundRepeat: 'no-repeat',
+                aspectRatio: '586 / 101',
+                textShadow: '0 1px 0 rgba(255,220,160,0.6), 0 2px 4px rgba(0,0,0,0.3)',
+                filter: 'saturate(0.88) brightness(0.96)',
+              }}
+            >
+              统计结果 🌐
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <div className="mt-auto w-full max-w-[85vw] md:max-w-lg pb-8 md:pb-10 pt-16 z-10">
+        <div className="relative px-4 py-4 md:px-5">
+          <div className="absolute inset-x-2 inset-y-1 rounded-[26px] bg-[linear-gradient(180deg,rgba(77,48,21,0.26),rgba(77,48,21,0.16))] backdrop-blur-[2px]"></div>
+          <div className="absolute left-1/2 top-0 h-px w-32 -translate-x-1/2 bg-gradient-to-r from-transparent via-[rgba(91,62,27,0.4)] to-transparent"></div>
+          <p
+            className="relative mx-auto max-w-[38ch] text-center font-serif text-[13px] md:text-[14px] font-bold leading-[1.9] text-[#f4ead3]"
+            style={{ textShadow: '0 1px 2px rgba(49,29,10,0.7)', letterSpacing: '0.02em' }}
+          >
+            本测试中的题目与结果分析均由 AI 基于公开网络舆论素材整理生成，仅供娱乐与讨论参考，不代表开发者本人立场。
+          </p>
+        </div>
       </div>
-
-      <div className="mt-auto w-full max-w-[85vw] md:max-w-md px-0 pb-10 md:pb-12 pt-16 text-center z-10 flex justify-center">
-        <p
-          className="font-serif text-xs md:text-sm font-bold leading-7 text-[#5a3a18]"
-          style={{ textShadow: '0 1px 2px rgba(255,255,255,0.45)', letterSpacing: '0.03em' }}
-        >
-          本测试中的题目与结果分析均由 AI 基于公开网络舆论素材整理生成，仅供娱乐与讨论参考，不代表开发者本人立场。
-        </p>
-      </div>
-
-
     </main>
   );
 }
