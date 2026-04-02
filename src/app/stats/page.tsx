@@ -54,12 +54,12 @@ export default function StatsPage() {
     <div
       className="min-h-[100dvh] relative pt-2 md:pt-4 px-8 selection:bg-[#a8824f]/30"
     >
-      <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-8">
+      <div className="w-full h-12 md:h-16 flex items-center justify-center relative z-20 mb-8 px-2 overflow-hidden">
         <h1
-          className="text-xl md:text-2xl font-serif font-black tracking-[0.2em] text-[#f2ecd9] drop-shadow-lg text-center px-4"
+          className="whitespace-nowrap text-[clamp(12px,5.5vw,20px)] md:text-[clamp(16px,3vw,24px)] font-serif font-black tracking-wide text-[#f2ecd9] drop-shadow-lg text-center"
           style={{ textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(0,0,0,0.4)' }}
         >
-          {loading ? '正在加载统计数据...' : `全网统计数据 (共 ${stats?.total || 0} 人)`}
+          {loading ? '正在加载...' : `全网统计数据 (共 ${stats?.total || 0} 人)`}
         </h1>
       </div>
 
