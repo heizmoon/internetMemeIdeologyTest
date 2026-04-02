@@ -50,6 +50,18 @@ function ResultsContent() {
     submitResults();
   }, [scores]);
 
+  const fallbackDownload = (blob: Blob) => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ideology-result.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    alert('截图已保存到你的设备，可以手动分享。');
+  };
+
   const handleShare = async () => {
     if (!captureRef.current) return;
     setIsSharing(true);
@@ -71,9 +83,7 @@ function ResultsContent() {
             files: [file],
           });
         } catch (error) {
-          if ((error as Error).name !== 'AbortError') {
-            fallbackDownload(blob);
-          }
+          if ((error as Error).name !== 'AbortError') fallbackDownload(blob);
         }
       } else {
         fallbackDownload(blob);
@@ -83,18 +93,6 @@ function ResultsContent() {
     } finally {
       setIsSharing(false);
     }
-  };
-
-  const fallbackDownload = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'ideology-result.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    alert('截图已保存到你的设备，可以手动分享。');
   };
 
   const archetypeAssets: Record<string, string> = {
@@ -125,7 +123,7 @@ function ResultsContent() {
         <div className="flex flex-col items-center text-center">
           <div
             className="relative w-[220px] mt-8 overflow-hidden"
-            style={{ height: '150px' }}
+            style={{ height: '200px' }}
           >
             <Image
               src={imagePath}
@@ -167,15 +165,7 @@ function ResultsContent() {
         transition={{ delay: 0.12 }}
         className="relative z-10 w-full max-w-[356px] mx-auto mt-6 px-1"
       >
-        <div className="flex items-center justify-center gap-3 mb-2">
-          <div className="w-10 h-px bg-gradient-to-r from-transparent to-[#8b6c45]/60"></div>
-          <p className="text-[11px] tracking-[0.28em] text-[#6f5138] font-serif font-bold">
-            维度分布
-          </p>
-          <div className="w-10 h-px bg-gradient-to-l from-transparent to-[#8b6c45]/60"></div>
-        </div>
-
-        <div className="w-full flex items-center justify-center mb-3">
+        <div className="w-full flex items-center justify-center mb-2">
           <ResultRadarChart scores={scores} />
         </div>
 

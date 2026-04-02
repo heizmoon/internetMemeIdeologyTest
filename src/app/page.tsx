@@ -13,8 +13,11 @@ export default function Home() {
 
         <div className="relative text-center">
           <h1
-            className="text-[2.7rem] md:text-[4.3rem] font-serif font-black tracking-[0.08em] text-transparent bg-clip-text bg-gradient-to-b from-[#fff8eb] via-[#f2e3be] to-[#b6905d]"
-            style={{ WebkitTextStroke: '1.5px rgba(73, 48, 24, 0.72)', filter: 'drop-shadow(0px 5px 4px rgba(0,0,0,0.32))' }}
+            className="text-[2.7rem] md:text-[4.3rem] font-serif font-black tracking-[0.04em] text-transparent bg-clip-text bg-gradient-to-b from-[#fbf4e4] via-[#e8d5ad] to-[#8e6b42]"
+            style={{
+              WebkitTextStroke: '0.2px rgba(78, 52, 27, 0.7)',
+              textShadow: '0 -2px 0 rgba(255,245,221,1), 0 4px 6px rgba(64,41,20,1)',
+            }}
           >
             你的身份是?
           </h1>
