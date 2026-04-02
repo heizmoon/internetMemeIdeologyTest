@@ -163,12 +163,13 @@ function ResultsContent() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.12 }}
-        className="relative z-10 w-full max-w-[356px] mx-auto mt-6 px-1"
+        className="relative z-10 w-full max-w-[356px] mx-auto -mt-10 px-1"
       >
         <div className="w-full flex items-center justify-center mb-2">
           <ResultRadarChart scores={scores} />
         </div>
 
+        {/* 暂时隐藏条形图
         <div className="w-full space-y-4 px-1">
           {DIMENSIONS.map((dimension) => (
             <AxisBar
@@ -178,6 +179,7 @@ function ResultsContent() {
             />
           ))}
         </div>
+        */}
       </motion.section>
 
       <motion.div

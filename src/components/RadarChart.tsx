@@ -55,9 +55,9 @@ export default function ResultRadarChart({ scores }: Props) {
   const data = buildEightAxes(scores);
 
   return (
-    <div className="w-full h-[320px] max-w-[400px]">
+    <div className="w-full h-[320px] max-w-[400px] pointer-events-none">
       <ResponsiveContainer width="100%" height={320}>
-        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
+        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data} style={{ pointerEvents: 'none' }}>
           <PolarGrid stroke="#bba078" strokeOpacity={0.6} />
           <PolarAngleAxis dataKey="subject" tick={CustomTick} />
           <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
@@ -68,6 +68,7 @@ export default function ResultRadarChart({ scores }: Props) {
             strokeWidth={2.5}
             fill="#a68a56"
             fillOpacity={0.45}
+            activeDot={false}
           />
         </RadarChart>
       </ResponsiveContainer>

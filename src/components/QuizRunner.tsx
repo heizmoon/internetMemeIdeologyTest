@@ -85,7 +85,7 @@ export default function QuizRunner() {
                   onClick={() => handleAnswer(option.id)}
                   className={cn(
                     'group w-full text-left px-2 py-2.5 md:px-3 md:py-3 transition-all duration-300 relative overflow-hidden',
-                    'bg-[rgba(255,248,228,0.3)] border border-[#8b6c45]/10 rounded-[12px] hover:bg-[rgba(255,248,228,0.38)] hover:border-[#8b6c45]/14 active:bg-[rgba(226,208,165,0.2)]',
+                    'bg-[rgba(255,248,228,0.5)] border border-[#8b6c45]/10 rounded-[12px] hover:bg-[rgba(255,248,228,0.6)] hover:border-[#8b6c45]/14 active:bg-[rgba(226,208,165,0.3)]',
                     'grid grid-cols-[2.4rem_minmax(0,1fr)] items-center gap-x-2.5 md:grid-cols-[2.8rem_minmax(0,1fr)] md:gap-x-3'
                   )}
                 >
@@ -102,7 +102,7 @@ export default function QuizRunner() {
                     </span>
                   </div>
                   <div className="relative z-10 pr-0.5">
-                    <span className="block text-[17px] md:text-[19px] text-[#3f210d] font-serif font-bold group-hover:text-[#1a0d05] leading-[1.72]" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.28)', letterSpacing: '0.006em' }}>
+                    <span className="block text-[14px] text-[#3f210d] font-serif font-bold group-hover:text-[#1a0d05] leading-[1.72]" style={{ textShadow: '0 1px 1px rgba(255,255,255,0.28)', letterSpacing: '0.006em' }}>
                       {option.text}
                     </span>
                   </div>

@@ -26,10 +26,10 @@ export default function Home() {
         <div className="relative mt-8 w-full max-w-[36ch]">
           <div className="mb-4 h-px w-20 bg-gradient-to-r from-[#8b6c45]/0 via-[#8b6c45]/55 to-[#8b6c45]/0"></div>
           <p
-            className="font-serif text-[#3f210d] text-[1.32rem] md:text-[1.45rem] font-bold leading-[1.8] tracking-[0.03em] text-left whitespace-pre-line"
+            className="font-serif text-[#3f210d] text-[1.2rem] font-bold leading-[1.5] tracking-[0.03em] text-left"
             style={{ textShadow: '0 1px 2px rgba(255,255,255,0.55)' }}
           >
-            {'通过一系列网络热门话题\n的灵魂拷问，测定你在键政圈的身份。'}
+            {'通过一系列网络热门话题的灵魂拷问，测定你在键政圈的身份。'}
           </p>
         </div>
       </section>
